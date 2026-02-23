@@ -193,15 +193,16 @@ function renderPage() {
 
   if (current === 0) {
 
-    const spread = document.createElement("div");
-    spread.className = "spread";
+  const spread = document.createElement("div");
+  spread.className = "spread";
 
-    spread.innerHTML = `
-      <img src="images/0.jpg">
-      <div style="width:50%;"></div>
-    `;
+  spread.innerHTML = `
+    <div style="width:50%;"></div>
+    <img src="images/0.jpg">
+  `;
 
-    staticLayer.appendChild(spread);
+  staticLayer.appendChild(spread);
+}
 
   } else {
 
