@@ -160,16 +160,16 @@
   const bgMusic = document.getElementById("bgMusic");
 
   function updatePage() {
-    pageText.classList.add("fade");
+  pageText.classList.add("flip");
 
-    setTimeout(() => {
-      pageText.innerText = pages[currentPage];
-      pageText.classList.remove("fade");
-      pageSound.currentTime = 0;
-      pageSound.play();
-      updateProgress();
-    }, 300);
-  }
+  setTimeout(() => {
+    pageText.innerText = pages[currentPage];
+    pageText.classList.remove("flip");
+    pageSound.currentTime = 0;
+    pageSound.play();
+    updateProgress();
+  }, 300);
+}
 
   function updateProgress() {
     const progress = ((currentPage + 1) / pages.length) * 100;
