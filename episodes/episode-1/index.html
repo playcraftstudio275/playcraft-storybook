@@ -192,10 +192,19 @@ function renderPage() {
   staticLayer.innerHTML = "";
 
   if (current === 0) {
-    const cover = document.createElement("div");
-    cover.className = "cover";
-    cover.innerHTML = `<img src="images/0.jpg">`;
-    staticLayer.appendChild(cover);
+
+  const spread = document.createElement("div");
+  spread.className = "spread";
+
+  spread.innerHTML = `
+    <img src="images/0.jpg">
+    <div style="width:50%;"></div>
+  `;
+
+  staticLayer.appendChild(spread);
+
+}
+    
   } else {
     const spread = document.createElement("div");
     spread.className = "spread";
