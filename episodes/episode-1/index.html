@@ -14,205 +14,159 @@
       font-family: Arial, sans-serif;
     }
 
-   html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #000;
-}
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
 
-body {
-  min-height: 100svh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    body {
+      min-height: 100svh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
     .book {
-      width: 90%;
-      max-width: 500px;
-      height: 100%;
       width: 100%;
-      max-width: 600px;
-      max-height: 900px;
-      border-radius: 0;
-      perspective: 1500px;
-      background: rgba(0,0,0,0.6);
-      border-radius: 20px;
-      padding: 25px;
-      position: relative;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+      max-width: 900px;
+      height: 100svh;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      animation: fadeIn 1s ease;
+      padding: 15px;
     }
 
     .page {
-  flex: 1;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.8s ease;
-}
-
-    .spread {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  gap: 0;
-}
-
-.spread img {
-  width: 50%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-    .progress {
-      height: 5px;
-      background: rgba(255,255,255,0.2);
-      border-radius: 5px;
-      margin-bottom: 15px;
-      overflow: hidden;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .progress-bar {
+    .spread {
+      display: flex;
+      width: 100%;
       height: 100%;
-      width: 0%;
-      background: #ff9800;
-      transition: width 0.4s ease;
+    }
+
+    .spread img {
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .left {
+      width: 50%;
+    }
+
+    .right {
+      width: 50%;
+    }
+
+    .cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .controls {
       text-align: center;
-      margin-top: 10px;
+      padding: 10px 0;
     }
 
     button {
-      padding: 10px 18px;
+      padding: 10px 20px;
+      margin: 5px;
       border: none;
       border-radius: 25px;
-      margin: 5px;
       background: #ff9800;
       color: white;
+      font-size: 16px;
       cursor: pointer;
-      font-size: 14px;
     }
 
-    #intro {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      animation: fadeOutIntro 3s forwards;
+    button:active {
+      transform: scale(0.95);
     }
 
-    .logo {
-      font-size: 28px;
-      letter-spacing: 4px;
-      color: white;
-      animation: fadeInLogo 2s ease;
-    }
-
-    @keyframes fadeInLogo {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeOutIntro {
-      0% { opacity: 1; }
-      70% { opacity: 1; }
-      100% { opacity: 0; visibility: hidden; }
-    }
   </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div id="intro">
-  <div class="logo">PLAYCRAFT STUDIO</div>
-</div>
+<div class="book">
 
-<div class="book" id="book">
-  <div class="progress">
-    <div class="progress-bar" id="progressBar"></div>
-  </div>
-
-  <div class="page" id="page">
-  <div class="spread" id="spread">
-    <img id="leftPage" src="images/0.jpg">
-    <img id="rightPage" style="display:none;">
-  </div>
-</div>
+  <div class="page" id="pageContainer"></div>
 
   <div class="controls">
     <button onclick="prevPage()">◀</button>
     <button onclick="nextPage()">▶</button>
     <button onclick="goHome()">Home</button>
   </div>
+
 </div>
 
 <audio id="pageSound" src="../../assets/audio/page-flip.mp3"></audio>
-<audio id="bgMusic" src="../../assets/audio/bg-music.mp3" loop></audio>
 
 <script>
-  const pages = [
-    "Once upon a time, in a world full of imagination...",
-    "A young creator discovered the magic of building.",
-    "Every block placed was a new adventure.",
-    "And the story was only just beginning..."
-  ];
 
-  let currentPage = 0;
-  const page = document.getElementById("page");
-  const pageFront = document.getElementById("pageFront");
-  const pageBack = document.getElementById("pageBack");
-  const progressBar = document.getElementById("progressBar");
+  let currentIndex = 0;
+
+  const pageContainer = document.getElementById("pageContainer");
   const pageSound = document.getElementById("pageSound");
-  const bgMusic = document.getElementById("bgMusic");
 
-  function updatePage() {
+  const totalSpreads = 9; // 1–9
 
-  pageBack.innerText = pages[currentPage];
+  function renderPage() {
 
-  page.classList.add("flip");
+    pageContainer.innerHTML = "";
 
-  setTimeout(() => {
-    pageFront.innerText = pages[currentPage];
-    page.classList.remove("flip");
-    pageSound.currentTime = 0;
-    pageSound.play();
-    updateProgress();
-  }, 800);
-}
+    // COVER
+    if (currentIndex === 0) {
+      const coverDiv = document.createElement("div");
+      coverDiv.className = "cover";
 
-  function updateProgress() {
-    const progress = ((currentPage + 1) / pages.length) * 100;
-    progressBar.style.width = progress + "%";
+      const img = document.createElement("img");
+      img.src = "images/0.jpg";
+
+      coverDiv.appendChild(img);
+      pageContainer.appendChild(coverDiv);
+      return;
+    }
+
+    // SPREAD
+    const spreadDiv = document.createElement("div");
+    spreadDiv.className = "spread";
+
+    const leftImg = document.createElement("img");
+    leftImg.className = "left";
+    leftImg.src = `images/${currentIndex}a.jpg`;
+
+    const rightImg = document.createElement("img");
+    rightImg.className = "right";
+    rightImg.src = `images/${currentIndex}b.jpg`;
+
+    spreadDiv.appendChild(leftImg);
+    spreadDiv.appendChild(rightImg);
+
+    pageContainer.appendChild(spreadDiv);
   }
 
   function nextPage() {
-    if(currentPage < pages.length - 1) {
-      currentPage++;
-      updatePage();
+    if (currentIndex < totalSpreads) {
+      currentIndex++;
+      pageSound.currentTime = 0;
+      pageSound.play();
+      renderPage();
     }
   }
 
   function prevPage() {
-    if(currentPage > 0) {
-      currentPage--;
-      updatePage();
+    if (currentIndex > 0) {
+      currentIndex--;
+      pageSound.currentTime = 0;
+      pageSound.play();
+      renderPage();
     }
   }
 
@@ -220,30 +174,21 @@ body {
     window.location.href = "../../index.html";
   }
 
-  // Swipe gesture
+  // Swipe support
   let startX = 0;
 
-  document.getElementById("book").addEventListener("touchstart", e => {
+  document.body.addEventListener("touchstart", e => {
     startX = e.touches[0].clientX;
   });
 
-  document.getElementById("book").addEventListener("touchend", e => {
+  document.body.addEventListener("touchend", e => {
     let endX = e.changedTouches[0].clientX;
-    if(startX - endX > 50) nextPage();
-    if(endX - startX > 50) prevPage();
+    if (startX - endX > 50) nextPage();
+    if (endX - startX > 50) prevPage();
   });
 
-  // First click: music + fullscreen
-  document.body.addEventListener("click", () => {
-    bgMusic.play();
+  renderPage();
 
-    const el = document.documentElement;
-    if (el.requestFullscreen) {
-      el.requestFullscreen();
-    }
-  }, { once: true });
-
-  updateProgress();
 </script>
 
 </body>
