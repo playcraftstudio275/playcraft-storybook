@@ -66,16 +66,18 @@
 <div class="overlay">
   <h1>Playcraft Storybook</h1>
   <p>Serial 1</p>
-  <button class="btn" onclick="goToEpisode()">Start Episode 1</button>
+  <div class="episode-list">
+  <button class="btn" onclick="goToEpisode(1)">Episode 1</button>
+</div>
 </div>
 
 <script>
-  function goToEpisode() {
-    document.body.style.opacity = "0";
-    setTimeout(() => {
-      window.location.href = "episodes/episode-1/";
-    }, 500);
-  }
+  function goToEpisode(ep) {
+  document.body.style.opacity = "0";
+  setTimeout(() => {
+    window.location.href = "episodes/episode-" + ep + "/";
+  }, 500);
+}
 </script>
 
 </body>
