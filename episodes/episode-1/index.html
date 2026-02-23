@@ -193,25 +193,26 @@ function renderPage() {
 
   if (current === 0) {
 
-  const spread = document.createElement("div");
-  spread.className = "spread";
-
-  spread.innerHTML = `
-    <img src="images/0.jpg">
-    <div style="width:50%;"></div>
-  `;
-
-  staticLayer.appendChild(spread);
-
-}
-    
-  } else {
     const spread = document.createElement("div");
     spread.className = "spread";
+
+    spread.innerHTML = `
+      <img src="images/0.jpg">
+      <div style="width:50%;"></div>
+    `;
+
+    staticLayer.appendChild(spread);
+
+  } else {
+
+    const spread = document.createElement("div");
+    spread.className = "spread";
+
     spread.innerHTML = `
       <img src="images/${current}a.jpg">
       <img src="images/${current}b.jpg">
     `;
+
     staticLayer.appendChild(spread);
   }
 
