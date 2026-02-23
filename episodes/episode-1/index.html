@@ -14,7 +14,7 @@
 
     body {
       height: 100vh;
-      background: #111;
+      background: linear-gradient(160deg, #0f2027, #203a43, #2c5364);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -26,47 +26,76 @@
       width: 90%;
       max-width: 500px;
       height: 80vh;
-      background: #1e1e1e;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.6);
+      border-radius: 20px;
+      padding: 25px;
       position: relative;
-      animation: fadeIn 1s ease-in-out;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      animation: fadeIn 1s ease;
     }
 
     .page {
+      flex: 1;
       font-size: 18px;
-      line-height: 1.6;
-      transition: opacity 0.5s ease;
+      line-height: 1.7;
+      opacity: 1;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .page.fade {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    .progress {
+      height: 5px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 5px;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #ff9800;
+      transition: width 0.4s ease;
     }
 
     .controls {
-      position: absolute;
-      bottom: 20px;
-      width: 100%;
       text-align: center;
+      margin-top: 10px;
     }
 
     button {
-      padding: 10px 20px;
+      padding: 10px 18px;
       border: none;
-      border-radius: 30px;
+      border-radius: 25px;
       margin: 5px;
       background: #ff9800;
       color: white;
       cursor: pointer;
+      font-size: 14px;
     }
 
     @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
+      from {opacity: 0; transform: scale(0.95);}
+      to {opacity: 1; transform: scale(1);}
     }
   </style>
 </head>
 
 <body>
 
-<div class="book">
+<div class="book" id="book">
+  <div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
   <div class="page" id="pageText">
     Once upon a time, in a world full of imagination...
   </div>
@@ -78,7 +107,9 @@
   </div>
 </div>
 
+<!-- Sound Effects -->
 <audio id="pageSound" src="../../assets/audio/page-flip.mp3"></audio>
+<audio id="bgMusic" src="../../assets/audio/bg-music.mp3" loop></audio>
 
 <script>
   const pages = [
@@ -89,10 +120,26 @@
   ];
 
   let currentPage = 0;
+  const pageText = document.getElementById("pageText");
+  const progressBar = document.getElementById("progressBar");
+  const pageSound = document.getElementById("pageSound");
+  const bgMusic = document.getElementById("bgMusic");
 
   function updatePage() {
-    document.getElementById("pageText").innerText = pages[currentPage];
-    document.getElementById("pageSound").play();
+    pageText.classList.add("fade");
+
+    setTimeout(() => {
+      pageText.innerText = pages[currentPage];
+      pageText.classList.remove("fade");
+      pageSound.currentTime = 0;
+      pageSound.play();
+      updateProgress();
+    }, 300);
+  }
+
+  function updateProgress() {
+    const progress = ((currentPage + 1) / pages.length) * 100;
+    progressBar.style.width = progress + "%";
   }
 
   function nextPage() {
@@ -112,6 +159,26 @@
   function goHome() {
     window.location.href = "../../index.html";
   }
+
+  // Swipe Gesture
+  let startX = 0;
+
+  document.getElementById("book").addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+  });
+
+  document.getElementById("book").addEventListener("touchend", e => {
+    let endX = e.changedTouches[0].clientX;
+    if(startX - endX > 50) nextPage();
+    if(endX - startX > 50) prevPage();
+  });
+
+  // Start background music after first interaction
+  document.body.addEventListener("click", () => {
+    bgMusic.play();
+  }, { once: true });
+
+  updateProgress();
 </script>
 
 </body>
