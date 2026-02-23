@@ -3,39 +3,116 @@
 <head>
   <title>Episode 1 - Playcraft Storybook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: Arial, sans-serif;
+    }
+
+    body {
+      height: 100vh;
       background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
       color: white;
+    }
+
+    .book {
+      width: 90%;
+      max-width: 500px;
+      height: 80vh;
+      background: #1e1e1e;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+      position: relative;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .page {
+      font-size: 18px;
+      line-height: 1.6;
+      transition: opacity 0.5s ease;
+    }
+
+    .controls {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
       text-align: center;
     }
 
-    .container {
-      padding: 20px;
-    }
-
     button {
-      padding: 12px 20px;
-      font-size: 16px;
-      margin-top: 20px;
+      padding: 10px 20px;
       border: none;
+      border-radius: 30px;
+      margin: 5px;
       background: #ff9800;
       color: white;
-      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
     }
   </style>
 </head>
+
 <body>
 
-<div class="container">
-  <h1>Episode 1</h1>
-  <p>Coming Soon...</p>
-  <button onclick="window.location.href='../../index.html'">
-    Back to Main Page
-  </button>
+<div class="book">
+  <div class="page" id="pageText">
+    Once upon a time, in a world full of imagination...
+  </div>
+
+  <div class="controls">
+    <button onclick="prevPage()">◀</button>
+    <button onclick="nextPage()">▶</button>
+    <button onclick="goHome()">Home</button>
+  </div>
 </div>
+
+<audio id="pageSound" src="../../assets/audio/page-flip.mp3"></audio>
+
+<script>
+  const pages = [
+    "Once upon a time, in a world full of imagination...",
+    "A young creator discovered the magic of building.",
+    "Every block placed was a new adventure.",
+    "And the story was only just beginning..."
+  ];
+
+  let currentPage = 0;
+
+  function updatePage() {
+    document.getElementById("pageText").innerText = pages[currentPage];
+    document.getElementById("pageSound").play();
+  }
+
+  function nextPage() {
+    if(currentPage < pages.length - 1) {
+      currentPage++;
+      updatePage();
+    }
+  }
+
+  function prevPage() {
+    if(currentPage > 0) {
+      currentPage--;
+      updatePage();
+    }
+  }
+
+  function goHome() {
+    window.location.href = "../../index.html";
+  }
+</script>
 
 </body>
 </html>
