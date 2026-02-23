@@ -55,14 +55,34 @@
       background: #ff9800;
       transition: width 0.4s ease;
     }
-
     .page {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  perspective: 2000px;
+}
+
+/* Flip animation */
+.flip-next {
+  animation: flipNext 0.6s ease forwards;
+}
+
+.flip-prev {
+  animation: flipPrev 0.6s ease forwards;
+}
+
+@keyframes flipNext {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(-15deg); }
+}
+
+@keyframes flipPrev {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(15deg); }
+}
+  
     /* COVER MODE */
 .cover {
   width: 100%;
@@ -213,23 +233,37 @@
     progressBar.style.width = progress + "%";
   }
 
-  function nextPage() {
-    if (currentIndex < totalSpreads) {
+ function nextPage() {
+  if (currentIndex < totalSpreads) {
+
+    pageContainer.classList.add("flip-next");
+
+    setTimeout(() => {
       currentIndex++;
-      pageSound.currentTime = 0;
-      pageSound.play();
       renderPage();
-    }
+      pageContainer.classList.remove("flip-next");
+    }, 300);
+
+    pageSound.currentTime = 0;
+    pageSound.play();
   }
+}
 
   function prevPage() {
-    if (currentIndex > 0) {
+  if (currentIndex > 0) {
+
+    pageContainer.classList.add("flip-prev");
+
+    setTimeout(() => {
       currentIndex--;
-      pageSound.currentTime = 0;
-      pageSound.play();
       renderPage();
-    }
+      pageContainer.classList.remove("flip-prev");
+    }, 300);
+
+    pageSound.currentTime = 0;
+    pageSound.play();
   }
+}
 
   function goHome() {
     window.location.href = "../../index.html";
