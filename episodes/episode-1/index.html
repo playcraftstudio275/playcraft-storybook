@@ -82,12 +82,6 @@
       font-size: 14px;
     }
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: scale(0.95);}
-      to {opacity: 1; transform: scale(1);}
-    }
-
-    /* INTRO SCREEN */
     #intro {
       position: fixed;
       width: 100%;
@@ -195,7 +189,7 @@
     window.location.href = "../../index.html";
   }
 
-  // Swipe
+  // Swipe gesture
   let startX = 0;
 
   document.getElementById("book").addEventListener("touchstart", e => {
@@ -208,13 +202,14 @@
     if(endX - startX > 50) prevPage();
   });
 
-  // Background music + fullscreen after first click
+  // First click: music + fullscreen
   document.body.addEventListener("click", () => {
     bgMusic.play();
 
     const el = document.documentElement;
-    if (el.requestFullscreen) el.requestFullscreen();
-
+    if (el.requestFullscreen) {
+      el.requestFullscreen();
+    }
   }, { once: true });
 
   updateProgress();
