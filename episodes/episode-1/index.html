@@ -3,6 +3,8 @@
 <head>
   <title>Episode 1 - Playcraft Storybook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <style>
     * {
@@ -12,20 +14,29 @@
       font-family: Arial, sans-serif;
     }
 
-    body {
-      height: 100vh;
-      background: linear-gradient(160deg, #0f2027, #203a43, #2c5364);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      color: white;
-    }
+   html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+body {
+  min-height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
     .book {
       width: 90%;
       max-width: 500px;
-      height: 80vh;
+      height: 100%;
+      width: 100%;
+      max-width: 600px;
+      max-height: 900px;
+      border-radius: 0;
+      perspective: 1500px;
       background: rgba(0,0,0,0.6);
       border-radius: 20px;
       padding: 25px;
@@ -39,17 +50,29 @@
     }
 
     .page {
-      flex: 1;
-      font-size: 18px;
-      line-height: 1.7;
-      transition: transform 0.6s ease, opacity 0.4s ease;
-      transform-style: preserve-3d;
-    }
+  flex: 1;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+}
 
-    .page.flip {
-      transform: rotateY(90deg);
-      opacity: 0;
-    }
+.page-front,
+.page-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.page-back {
+  transform: rotateY(180deg);
+}
+
+.page.flip {
+  transform: rotateY(-180deg);
+}
 
     .progress {
       height: 5px;
@@ -126,9 +149,12 @@
     <div class="progress-bar" id="progressBar"></div>
   </div>
 
-  <div class="page" id="pageText">
+  <<div class="page" id="page">
+  <div class="page-front" id="pageFront">
     Once upon a time, in a world full of imagination...
   </div>
+  <div class="page-back" id="pageBack"></div>
+</div>
 
   <div class="controls">
     <button onclick="prevPage()">◀</button>
@@ -149,22 +175,27 @@
   ];
 
   let currentPage = 0;
-  const pageText = document.getElementById("pageText");
+  const page = document.getElementById("page");
+  const pageFront = document.getElementById("pageFront");
+  const pageBack = document.getElementById("pageBack");
   const progressBar = document.getElementById("progressBar");
   const pageSound = document.getElementById("pageSound");
   const bgMusic = document.getElementById("bgMusic");
 
   function updatePage() {
-    pageText.classList.add("flip");
 
-    setTimeout(() => {
-      pageText.innerText = pages[currentPage];
-      pageText.classList.remove("flip");
-      pageSound.currentTime = 0;
-      pageSound.play();
-      updateProgress();
-    }, 300);
-  }
+  pageBack.innerText = pages[currentPage];
+
+  page.classList.add("flip");
+
+  setTimeout(() => {
+    pageFront.innerText = pages[currentPage];
+    page.classList.remove("flip");
+    pageSound.currentTime = 0;
+    pageSound.play();
+    updateProgress();
+  }, 800);
+}
 
   function updateProgress() {
     const progress = ((currentPage + 1) / pages.length) * 100;
