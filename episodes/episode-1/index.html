@@ -7,32 +7,28 @@
 
 <audio id="whoosh" src="audio/whoosh.mp3"></audio>
 
-<!-- BOOK CONTAINER -->
-<div class="book" id="book">
+<!-- BOOK -->
+<div class="book">
 
   <!-- COVER -->
-  <div class="page cover" id="coverPage">
+  <div class="page cover" id="page0">
     <img src="images/0.jpg">
     <button class="startBtn" onclick="startBook()">Mulai Cerita</button>
   </div>
 
   <!-- SPREAD 1 -->
-  <div class="spread">
-    <div class="left">
-      <img src="images/1b.jpg">
-    </div>
-    <div class="right page" onclick="nextPage(this)">
-      <img src="images/1a.jpg">
+  <div class="page" id="page1">
+    <div class="spread">
+      <div class="left"><img src="images/1b.jpg"></div>
+      <div class="right"><img src="images/1a.jpg"></div>
     </div>
   </div>
 
   <!-- SPREAD 2 -->
-  <div class="spread">
-    <div class="left">
-      <img src="images/2b.jpg">
-    </div>
-    <div class="right page" onclick="nextPage(this)">
-      <img src="images/2a.jpg">
+  <div class="page" id="page2">
+    <div class="spread">
+      <div class="left"><img src="images/2b.jpg"></div>
+      <div class="right"><img src="images/2a.jpg"></div>
     </div>
   </div>
 
@@ -43,7 +39,7 @@ body{
   margin:0;
   background:black;
   overflow:hidden;
-  font-family:Arial, sans-serif;
+  font-family:Arial;
 }
 
 /* INTRO */
@@ -74,49 +70,35 @@ body{
 /* BOOK */
 .book{
   position:absolute;
-  width:90vw;
-  height:90vh;
+  width:70vw;
+  height:85vh;
   top:50%;
   left:50%;
   transform:translate(-50%, -50%);
   perspective:2000px;
 }
 
-/* COVER */
-.cover{
+/* PAGE BASE */
+.page{
   position:absolute;
   width:100%;
   height:100%;
+  background:#111;
   transform-origin:left;
   transition:transform 1.2s ease-in-out;
-  z-index:5;
+  backface-visibility:hidden;
 }
 
-.cover img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-}
+/* Cover on top */
+#page0{ z-index:3; }
+#page1{ z-index:2; }
+#page2{ z-index:1; }
 
-.startBtn{
-  position:absolute;
-  bottom:30px;
-  left:50%;
-  transform:translateX(-50%);
-  padding:10px 20px;
-  border:none;
-  border-radius:20px;
-  background:white;
-  cursor:pointer;
-}
-
-/* SPREAD */
+/* Spread Layout */
 .spread{
-  position:absolute;
+  display:flex;
   width:100%;
   height:100%;
-  display:flex;
-  z-index:1;
 }
 
 .left, .right{
@@ -134,10 +116,24 @@ body{
   object-fit:contain;
 }
 
-/* PAGE FLIP */
-.page{
-  transform-origin:left;
-  transition:transform 1.2s ease-in-out;
+/* Cover image */
+.cover img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+/* Button */
+.startBtn{
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  background:white;
+  cursor:pointer;
 }
 
 .flipped{
@@ -146,7 +142,16 @@ body{
 </style>
 
 <script>
+let current = 0;
+const pages = [];
+
 window.onload = function(){
+  pages.push(
+    document.getElementById("page0"),
+    document.getElementById("page1"),
+    document.getElementById("page2")
+  );
+
   const intro = document.getElementById("intro");
   const sound = document.getElementById("whoosh");
 
@@ -159,11 +164,20 @@ window.onload = function(){
 };
 
 function startBook(){
-  document.getElementById("coverPage").classList.add("flipped");
+  flipNext();
 }
 
-function nextPage(el){
-  el.classList.add("flipped");
+document.addEventListener("click", function(){
+  if(current > 0){
+    flipNext();
+  }
+});
+
+function flipNext(){
+  if(current < pages.length){
+    pages[current].classList.add("flipped");
+    current++;
+  }
 }
 </script>
 
