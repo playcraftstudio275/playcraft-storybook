@@ -7,31 +7,30 @@
 
 <audio id="whoosh" src="audio/whoosh.mp3"></audio>
 
-<!-- BOOK -->
 <div class="book" id="book">
 
   <!-- COVER -->
-  <div class="cover" id="cover">
+  <div class="sheet coverSheet">
     <img src="images/0.jpg">
     <button class="startBtn">Mulai Cerita</button>
   </div>
 
-  <!-- SPREAD 1 -->
-  <div class="spread" id="spread1">
-    <div class="left">
+  <!-- SHEET 1 -->
+  <div class="sheet">
+    <div class="page left">
       <img src="images/1b.jpg">
     </div>
-    <div class="right page">
+    <div class="page right">
       <img src="images/1a.jpg">
     </div>
   </div>
 
-  <!-- SPREAD 2 -->
-  <div class="spread" id="spread2">
-    <div class="left">
+  <!-- SHEET 2 -->
+  <div class="sheet">
+    <div class="page left">
       <img src="images/2b.jpg">
     </div>
-    <div class="right page">
+    <div class="page right">
       <img src="images/2a.jpg">
     </div>
   </div>
@@ -79,66 +78,70 @@ body{
   top:50%;
   left:50%;
   transform:translate(-50%, -50%);
-  perspective:2500px;
+  perspective:3000px;
 }
 
-/* COVER */
-.cover{
+/* SHEET (lembar buku) */
+.sheet{
   position:absolute;
   width:100%;
   height:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:3;
   transform-origin:left;
+  transform-style:preserve-3d;
   transition:transform 1.2s ease-in-out;
 }
 
-.cover img{
-  max-width:100%;
-  max-height:100%;
-  object-fit:contain;
-}
+/* Z-Stack */
+.sheet:nth-child(1){ z-index:3; }
+.sheet:nth-child(2){ z-index:2; }
+.sheet:nth-child(3){ z-index:1; }
 
-/* SPREAD */
-.spread{
-  position:absolute;
-  width:100%;
-  height:100%;
-  display:flex;
-  opacity:0;
-  transition:opacity 0.6s ease;
-}
-
-.spread.active{
-  opacity:1;
-  z-index:2;
-}
-
-.left, .right{
-  width:50%;
-  height:100%;
+/* COVER */
+.coverSheet{
   display:flex;
   justify-content:center;
   align-items:center;
   background:#111;
 }
 
-.left img, .right img{
+.coverSheet img{
   max-width:100%;
   max-height:100%;
   object-fit:contain;
 }
 
-/* PAGE FLIP */
+/* PAGES */
 .page{
-  transform-origin:left;
-  transition:transform 1.2s ease-in-out;
+  position:absolute;
+  width:50%;
+  height:100%;
+  top:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#111;
   backface-visibility:hidden;
 }
 
-.page.flipped{
+.page img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+
+/* LEFT PAGE */
+.left{
+  left:0;
+}
+
+/* RIGHT PAGE */
+.right{
+  right:0;
+  transform-origin:left;
+}
+
+/* FLIP */
+.sheet.flipped{
   transform:rotateY(-180deg);
 }
 
@@ -157,15 +160,11 @@ body{
 </style>
 
 <script>
-let currentSpread = 0;
-const spreads = [];
+let currentSheet = 0;
+let sheets;
 
 window.onload = function(){
-
-  spreads.push(
-    document.getElementById("spread1"),
-    document.getElementById("spread2")
-  );
+  sheets = document.querySelectorAll(".sheet");
 
   const intro = document.getElementById("intro");
   const sound = document.getElementById("whoosh");
@@ -179,24 +178,18 @@ window.onload = function(){
 
   document.querySelector(".startBtn").addEventListener("click", function(e){
     e.stopPropagation();
-    openBook();
+    flipNext();
   });
 
   document.getElementById("book").addEventListener("click", function(){
-    nextSpread();
+    flipNext();
   });
 };
 
-function openBook(){
-  document.getElementById("cover").style.transform = "rotateY(-180deg)";
-  spreads[0].classList.add("active");
-}
-
-function nextSpread(){
-  if(currentSpread < spreads.length - 1){
-    spreads[currentSpread].querySelector(".page").classList.add("flipped");
-    currentSpread++;
-    spreads[currentSpread].classList.add("active");
+function flipNext(){
+  if(currentSheet < sheets.length){
+    sheets[currentSheet].classList.add("flipped");
+    currentSheet++;
   }
 }
 </script>
