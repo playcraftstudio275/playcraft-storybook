@@ -52,7 +52,7 @@
 <body>
 
 <div class="viewer">
-  <img id="page" src="0.jpg" alt="Story Page">
+  <img id="page" src="" alt="Story Page">
 </div>
 
 <div class="controls">
@@ -60,16 +60,15 @@
   <button onclick="nextPage()">Next ⟩</button>
 </div>
 
-<!-- Audio SUDAH disiapkan -->
 <audio id="audio"></audio>
 
 <script>
   const pages = [
-    "0.jpg",
-    "1a.jpg",
-    "1b.jpg",
-    "2a.jpg",
-    "2b.jpg"
+    "image/0.jpg",
+    "image/1a.jpg",
+    "image/1b.jpg",
+    "image/2a.jpg",
+    "image/2b.jpg"
   ];
 
   let currentPage = 0;
@@ -81,11 +80,12 @@
     const file = pages[currentPage];
     img.src = file;
 
-    // ===== AUDIO STRUCTURE (DIMATIKAN) =====
-    const audioFile = file.replace(".jpg", ".mp3");
+    // AUDIO STRUCTURE (DIMATIKAN)
+    const audioFile = file.replace("image/", "audio/")
+                          .replace(".jpg", ".mp3");
     audio.src = audioFile;
 
-    // audio.play(); ← DIMATIKAN DULU
+    // audio.play(); // nanti aktifkan
   }
 
   function nextPage() {
@@ -106,6 +106,9 @@
     if (e.key === "ArrowRight") nextPage();
     if (e.key === "ArrowLeft") prevPage();
   });
+
+  // LOAD PERTAMA KALI
+  loadPage();
 
 </script>
 
