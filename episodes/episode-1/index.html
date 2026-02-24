@@ -89,6 +89,7 @@ body{
   transform-origin:left;
   transform-style:preserve-3d;
   transition:transform 1.2s ease-in-out;
+  backface-visibility:hidden;
 }
 
 /* Z-Stack */
@@ -129,12 +130,13 @@ body{
 /* LEFT PAGE */
 .left{
   left:0;
+  width:50.1%;
 }
 
 /* RIGHT PAGE */
 .right{
   right:0;
-  transform-origin:left;
+  width:50.1%;
 }
 
 /* FLIP */
