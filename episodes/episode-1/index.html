@@ -5,84 +5,166 @@
   <div class="logo">PLAYCRAFT STUDIO</div>
 </div>
 
-<!-- COVER -->
-<div id="cover">
-  <img src="images/0.jpg" alt="Cover">
-</div>
-
 <audio id="whoosh" src="audio/whoosh.mp3"></audio>
 
+<!-- BOOK CONTAINER -->
+<div class="book" id="book">
+
+  <!-- COVER -->
+  <div class="page cover" id="coverPage">
+    <img src="images/0.jpg">
+    <button class="startBtn" onclick="startBook()">Mulai Cerita</button>
+  </div>
+
+  <!-- SPREAD 1 -->
+  <div class="spread">
+    <div class="left">
+      <img src="images/1b.jpg">
+    </div>
+    <div class="right page" onclick="nextPage(this)">
+      <img src="images/1a.jpg">
+    </div>
+  </div>
+
+  <!-- SPREAD 2 -->
+  <div class="spread">
+    <div class="left">
+      <img src="images/2b.jpg">
+    </div>
+    <div class="right page" onclick="nextPage(this)">
+      <img src="images/2a.jpg">
+    </div>
+  </div>
+
+</div>
+
 <style>
-  body {
-    margin: 0;
-    background: black;
-    overflow: hidden;
-  }
+body{
+  margin:0;
+  background:black;
+  overflow:hidden;
+  font-family:Arial, sans-serif;
+}
 
-  /* INTRO */
-  #intro {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    transition: opacity 1s ease;
-  }
+/* INTRO */
+#intro{
+  position:fixed;
+  width:100%;
+  height:100vh;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:100;
+  transition:opacity 1s ease;
+}
 
-  .logo {
-    color: white;
-    font-size: 2rem;
-    letter-spacing: 4px;
-    opacity: 0;
-    animation: fadeIn 1.5s ease forwards;
-  }
+.logo{
+  color:white;
+  font-size:2rem;
+  letter-spacing:4px;
+  opacity:0;
+  animation:fadeIn 1.5s forwards;
+}
 
-  /* COVER */
-  #cover {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 1.5s ease;
-  }
+@keyframes fadeIn{
+  to{opacity:1;}
+}
 
-  #cover img {
-    max-width: 100%;
-    max-height: 100%;
-  }
+/* BOOK */
+.book{
+  position:absolute;
+  width:90vw;
+  height:90vh;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  perspective:2000px;
+}
 
-  @keyframes fadeIn {
-    to { opacity: 1; }
-  }
+/* COVER */
+.cover{
+  position:absolute;
+  width:100%;
+  height:100%;
+  transform-origin:left;
+  transition:transform 1.2s ease-in-out;
+  z-index:5;
+}
+
+.cover img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.startBtn{
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  background:white;
+  cursor:pointer;
+}
+
+/* SPREAD */
+.spread{
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:flex;
+  z-index:1;
+}
+
+.left, .right{
+  width:50%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#111;
+}
+
+.left img, .right img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+
+/* PAGE FLIP */
+.page{
+  transform-origin:left;
+  transition:transform 1.2s ease-in-out;
+}
+
+.flipped{
+  transform:rotateY(-180deg);
+}
 </style>
 
 <script>
-  window.onload = function() {
-    const intro = document.getElementById("intro");
-    const cover = document.getElementById("cover");
-    const sound = document.getElementById("whoosh");
+window.onload = function(){
+  const intro = document.getElementById("intro");
+  const sound = document.getElementById("whoosh");
 
-    // play whoosh
-    sound.play().catch(() => {});
+  sound.play().catch(()=>{});
 
-    // setelah 3 detik
-    setTimeout(() => {
-      intro.style.opacity = "0";
+  setTimeout(()=>{
+    intro.style.opacity="0";
+    setTimeout(()=>intro.style.display="none",1000);
+  },3000);
+};
 
-      setTimeout(() => {
-        intro.style.display = "none";
-        cover.style.opacity = "1";
-      }, 1000);
+function startBook(){
+  document.getElementById("coverPage").classList.add("flipped");
+}
 
-    }, 3000);
-  };
+function nextPage(el){
+  el.classList.add("flipped");
+}
 </script>
 
 </body>
