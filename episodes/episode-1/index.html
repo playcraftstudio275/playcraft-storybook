@@ -70,18 +70,22 @@ body{
   to{opacity:1;}
 }
 
-/* BOOK */
+/* ========================= */
+/* BOOK - RESPONSIVE FIXED  */
+/* ========================= */
+
 .book{
   position:absolute;
-  width:70vw;
-  height:85vh;
+  height:90vh;
+  aspect-ratio: 3 / 2;   /* spread ratio stabil */
+  max-width:95vw;
   top:50%;
   left:50%;
   transform:translate(-50%, -50%);
   perspective:3000px;
 }
 
-/* SHEET (lembar buku) */
+/* SHEET */
 .sheet{
   position:absolute;
   width:100%;
@@ -106,12 +110,15 @@ body{
 }
 
 .coverSheet img{
-  max-width:100%;
-  max-height:100%;
+  width:100%;
+  height:100%;
   object-fit:contain;
 }
 
+/* ========================= */
 /* PAGES */
+/* ========================= */
+
 .page{
   position:absolute;
   width:50%;
@@ -127,16 +134,13 @@ body{
   object-fit:cover;
 }
 
-/* LEFT PAGE */
+/* LEFT & RIGHT */
 .left{
   left:0;
-  width:50.1%;
 }
 
-/* RIGHT PAGE */
 .right{
   right:0;
-  width:50.1%;
 }
 
 /* FLIP */
