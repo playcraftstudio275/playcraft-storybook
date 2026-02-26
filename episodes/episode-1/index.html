@@ -35,13 +35,6 @@
     </div>
   </div>
 
-<div class="gutter"></div>
-<button class="fullscreenBtn" id="fullscreenBtn">⛶</button>
-
-<audio id="pageAudio"></audio>
-
-<div class="gutter"></div>
-  
 </div>
 
 <style>
@@ -86,7 +79,6 @@ body{
   left:50%;
   transform:translate(-50%, -50%);
   perspective:3000px;
-  overflow:hidden;
 }
 
 /* SHEET (lembar buku) */
@@ -96,9 +88,8 @@ body{
   height:100%;
   transform-origin:left;
   transform-style:preserve-3d;
-  transition: transform 1.2s cubic-bezier(.65,.05,.36,1);
+  transition:transform 1.2s ease-in-out;
   backface-visibility:hidden;
-  box-shadow: 0 0 12px rgba(0,0,0,0.2);
 }
 
 /* Z-Stack */
@@ -181,31 +172,7 @@ body{
     aspect-ratio: 3 / 2;
     max-height:90vh;
   }
-}
 
-/* ========================= */
-/* SHADOW TENGAH (GUTTER) */
-/* ========================= */
-
-.gutter{
-  position:absolute;
-  left:50%;
-  top:0;
-  width:40px;
-  height:100%;
-  transform:translateX(-50%);
-  pointer-events:none;
-  z-index:5;
-
-  background:linear-gradient(
-    to right,
-    rgba(0,0,0,0.6),
-    rgba(0,0,0,0.15),
-    rgba(0,0,0,0.6)
-  );
-}
-  .gutter.hidden{
-  opacity:0;
 }
 </style>
 
@@ -221,8 +188,6 @@ window.onload = function(){
   const sound = document.getElementById("whoosh");
   const book  = document.getElementById("book");
   const startBtn = document.querySelector(".startBtn");
-  const gutter = document.querySelector(".gutter");
-gutter.classList.add("hidden"); // sembunyikan saat cover
 
   // Play intro sound
   sound.play().catch(()=>{});
@@ -262,13 +227,6 @@ function flipNext(){
   if(currentSheet < sheets.length){
     sheets[currentSheet].classList.add("flipped");
     currentSheet++;
-
-    // Tampilkan gutter setelah cover dibuka
-    if(currentSheet >= 1){
-      gutter.classList.remove("hidden");
-    }
-
-    playPageAudio();
   }
 }
 
@@ -277,13 +235,6 @@ function flipPrev(){
   if(currentSheet > 0){
     currentSheet--;
     sheets[currentSheet].classList.remove("flipped");
-
-    // Jika kembali ke cover, sembunyikan gutter
-    if(currentSheet === 0){
-      gutter.classList.add("hidden");
-    }
-
-    playPageAudio();
   }
 }
 </script>
