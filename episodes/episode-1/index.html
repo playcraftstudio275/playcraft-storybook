@@ -6,7 +6,7 @@
 </div>
 
 <audio id="whoosh" src="audio/whoosh.mp3"></audio>
-
+<audio id="bgMusic" src="audio/bg.mp3" loop></audio>
 <div class="book" id="book">
 
   <!-- COVER -->
@@ -253,6 +253,8 @@ window.onload = function(){
 });
   const intro = document.getElementById("intro");
   const sound = document.getElementById("whoosh");
+  const bgMusic = document.getElementById("bgMusic");
+bgMusic.volume = 0.3; // supaya tidak terlalu keras
   const book  = document.getElementById("book");
   const startBtn = document.querySelector(".startBtn");
 
@@ -269,9 +271,11 @@ window.onload = function(){
 
   // Start button (cover)
   startBtn.addEventListener("click", function(e){
-    e.stopPropagation();
-    flipNext();
-  });
+  e.stopPropagation();
+
+  bgMusic.play().catch(()=>{});
+  flipNext();
+});
 
   // Click left/right detection
   book.addEventListener("click", function(e){
