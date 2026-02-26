@@ -181,44 +181,56 @@ let currentSheet = 0;
 let sheets;
 
 window.onload = function(){
+
   sheets = document.querySelectorAll(".sheet");
 
   const intro = document.getElementById("intro");
   const sound = document.getElementById("whoosh");
+  const book  = document.getElementById("book");
+  const startBtn = document.querySelector(".startBtn");
 
+  // Play intro sound
   sound.play().catch(()=>{});
 
+  // Hide intro after 3 seconds
   setTimeout(()=>{
-    intro.style.opacity="0";
-    setTimeout(()=>intro.style.display="none",1000);
+    intro.style.opacity = "0";
+    setTimeout(()=>{
+      intro.style.display = "none";
+    },1000);
   },3000);
 
-  document.querySelector(".startBtn").addEventListener("click", function(e){
+  // Start button (cover)
+  startBtn.addEventListener("click", function(e){
     e.stopPropagation();
     flipNext();
   });
 
-  document.getElementById("book").addEventListener("click", function(e){
+  // Click left/right detection
+  book.addEventListener("click", function(e){
 
-  const bookWidth = this.offsetWidth;
-  const clickX = e.offsetX;
+    const rect = book.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
 
-  if(clickX > bookWidth / 2){
-    flipNext();   // kanan → next
-  } else {
-    flipPrev();   // kiri → prev
-  }
+    if(clickX > rect.width / 2){
+      flipNext();   // Klik kanan → Next
+    } else {
+      flipPrev();   // Klik kiri → Prev
+    }
 
-});
+  });
 
+};
+
+// NEXT
 function flipNext(){
   if(currentSheet < sheets.length){
     sheets[currentSheet].classList.add("flipped");
     currentSheet++;
   }
 }
-</script>
-<script>
+
+// PREV
 function flipPrev(){
   if(currentSheet > 0){
     currentSheet--;
@@ -226,4 +238,5 @@ function flipPrev(){
   }
 }
 </script>
+  
 </body>
