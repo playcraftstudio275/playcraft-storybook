@@ -198,10 +198,18 @@ window.onload = function(){
     flipNext();
   });
 
-  document.getElementById("book").addEventListener("click", function(){
-    flipNext();
-  });
-};
+  document.getElementById("book").addEventListener("click", function(e){
+
+  const bookWidth = this.offsetWidth;
+  const clickX = e.offsetX;
+
+  if(clickX > bookWidth / 2){
+    flipNext();   // kanan → next
+  } else {
+    flipPrev();   // kiri → prev
+  }
+
+});
 
 function flipNext(){
   if(currentSheet < sheets.length){
@@ -210,5 +218,12 @@ function flipNext(){
   }
 }
 </script>
-
+<script>
+function flipPrev(){
+  if(currentSheet > 0){
+    currentSheet--;
+    sheets[currentSheet].classList.remove("flipped");
+  }
+}
+</script>
 </body>
