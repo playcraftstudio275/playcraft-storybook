@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Storybook Serial 1</title>
-</head>
-
 <body>
 
 <!-- INTRO -->
@@ -44,6 +36,7 @@
   </div>
 
 </div>
+
 <style>
 body{
   margin:0;
@@ -77,21 +70,18 @@ body{
   to{opacity:1;}
 }
 
-/* ========================= */
-/* BOOK - RESPONSIVE FIXED  */
-/* ========================= */
-
+/* BOOK */
 .book{
   position:absolute;
-  width:95vw;
-  aspect-ratio: 3 / 2;
+  width:70vw;
+  height:85vh;
   top:50%;
   left:50%;
   transform:translate(-50%, -50%);
   perspective:3000px;
 }
 
-/* SHEET */
+/* SHEET (lembar buku) */
 .sheet{
   position:absolute;
   width:100%;
@@ -116,15 +106,12 @@ body{
 }
 
 .coverSheet img{
-  width:100%;
-  height:100%;
+  max-width:100%;
+  max-height:100%;
   object-fit:contain;
 }
 
-/* ========================= */
 /* PAGES */
-/* ========================= */
-
 .page{
   position:absolute;
   width:50%;
@@ -140,13 +127,16 @@ body{
   object-fit:cover;
 }
 
-/* LEFT & RIGHT */
+/* LEFT PAGE */
 .left{
   left:0;
+  width:50.1%;
 }
 
+/* RIGHT PAGE */
 .right{
   right:0;
+  width:50.1%;
 }
 
 /* FLIP */
