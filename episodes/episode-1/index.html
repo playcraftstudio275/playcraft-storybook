@@ -92,11 +92,6 @@ body{
   backface-visibility:hidden;
 }
 
-/* Z-Stack */
-.sheet:nth-child(1){ z-index:3; }
-.sheet:nth-child(2){ z-index:2; }
-.sheet:nth-child(3){ z-index:1; }
-
 /* COVER */
 .coverSheet{
   display:flex;
@@ -183,7 +178,9 @@ let sheets;
 window.onload = function(){
 
   sheets = document.querySelectorAll(".sheet");
-
+  sheets.forEach((sheet, index) => {
+  sheet.style.zIndex = sheets.length - index;
+});
   const intro = document.getElementById("intro");
   const sound = document.getElementById("whoosh");
   const book  = document.getElementById("book");
