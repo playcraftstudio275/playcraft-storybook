@@ -204,7 +204,9 @@ body{
     rgba(0,0,0,0.6)
   );
 }
-  
+  .gutter.hidden{
+  opacity:0;
+}
 </style>
 
 <script>
@@ -219,6 +221,8 @@ window.onload = function(){
   const sound = document.getElementById("whoosh");
   const book  = document.getElementById("book");
   const startBtn = document.querySelector(".startBtn");
+  const gutter = document.querySelector(".gutter");
+gutter.classList.add("hidden"); // sembunyikan saat cover
 
   // Play intro sound
   sound.play().catch(()=>{});
@@ -258,6 +262,13 @@ function flipNext(){
   if(currentSheet < sheets.length){
     sheets[currentSheet].classList.add("flipped");
     currentSheet++;
+
+    // Tampilkan gutter setelah cover dibuka
+    if(currentSheet >= 1){
+      gutter.classList.remove("hidden");
+    }
+
+    playPageAudio();
   }
 }
 
@@ -266,6 +277,13 @@ function flipPrev(){
   if(currentSheet > 0){
     currentSheet--;
     sheets[currentSheet].classList.remove("flipped");
+
+    // Jika kembali ke cover, sembunyikan gutter
+    if(currentSheet === 0){
+      gutter.classList.add("hidden");
+    }
+
+    playPageAudio();
   }
 }
 </script>
