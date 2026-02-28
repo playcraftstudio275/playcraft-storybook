@@ -340,6 +340,12 @@ function flipNext(){
   if(currentSheet < sheets.length){
     sheets[currentSheet].classList.add("flipped");
     currentSheet++;
+
+    // Jika sudah sampai halaman terakhir
+    if(currentSheet === sheets.length){
+      const endScreen = document.getElementById("endScreen");
+      endScreen.classList.add("show");
+    }
   }
 }
 
