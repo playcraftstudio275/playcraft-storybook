@@ -1,3 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Playcraft Storybook</title>
+
+<style>
+body{
+  margin:0;
+  background:black;
+  overflow:hidden;
+  font-family:Arial;
+}
+
+/* ================= INTRO ================= */
+
+#intro{
+  position:fixed;
+  inset:0;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+  transition:opacity 1s ease;
+}
+
+.logo{
+  color:white;
+  font-size:2rem;
+  letter-spacing:4px;
+  opacity:0;
+  animation:fadeIn 1.5s forwards;
+}
+
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
+/* ================= BOOK ================= */
+
+.book{
+  position:absolute;
+  width:70vw;
+  height:85vh;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  perspective:3000px;
+}
+
+/* ================= SHEET ================= */
+
+.sheet{
+  position:absolute;
+  width:100%;
+  height:100%;
+  transform-origin:left;
+  transform-style:preserve-3d;
+  transition:transform 1.2s ease-in-out;
+  backface-visibility:hidden;
+}
+
+/* ================= COVER ================= */
+
+.coverSheet{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#111;
+}
+
+.coverSheet img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+
+/* ================= PAGES ================= */
+
+.page{
+  position:absolute;
+  width:50%;
+  height:100%;
+  top:0;
+  overflow:hidden;
+}
+
+.page img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.left{
+  left:0;
+}
+
+.right{
+  right:0;
+}
+
+/* ================= FLIP ================= */
+
+.sheet.flipped{
+  transform:rotateY(-180deg);
+}
+
+/* ================= START BUTTON ================= */
+
+.startBtn{
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:12px 28px;
+  border:none;
+  border-radius:30px;
+  background:white;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* ================= END SCREEN ================= */
+
+.endScreen{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.4s ease;
+  z-index:999;
+}
+
+.endScreen.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.endScreen button{
+  background:#E79A34;
+  color:white;
+  border:none;
+  padding:16px 42px;
+  font-size:18px;
+  border-radius:40px;
+  cursor:pointer;
+  font-weight:600;
+  transition:all 0.2s ease;
+}
+
+.endScreen button:hover{
+  transform:scale(1.05);
+  background:#d88c26;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width:1024px){
+
+  body{
+    overflow:auto;
+  }
+
+  .book{
+    width:95vw;
+    height:auto;
+    aspect-ratio:3/2;
+    max-height:90vh;
+  }
+
+}
+</style>
+</head>
+
 <body>
 
 <!-- INTRO -->
@@ -7,6 +188,7 @@
 
 <audio id="whoosh" src="audio/whoosh.mp3"></audio>
 <audio id="bgMusic" src="audio/bg.mp3" loop></audio>
+
 <div class="book" id="book">
 
   <!-- COVER -->
@@ -15,6 +197,8 @@
     <button class="startBtn">Mulai Cerita</button>
   </div>
 
+  <!-- DUPLIKASI SHEET SESUAI KEBUTUHAN -->
+  
   <!-- SHEET 1 -->
   <div class="sheet">
     <div class="page left">
@@ -104,190 +288,14 @@
     <img src="images/9a.jpg">
   </div>
 </div>
+
   <!-- END SCREEN -->
-<div class="endScreen" id="endScreen">
-  <button id="restartBtn">Ulangi</button>
-  <button id="exitBtn">Keluar</button>
+  <div class="endScreen" id="endScreen">
+    <button id="restartBtn">Ulangi</button>
+    <button id="exitBtn">Keluar</button>
+  </div>
+
 </div>
-</div>
-
-<style>
-body{
-  margin:0;
-  background:black;
-  overflow:hidden;
-  font-family:Arial;
-}
-
-/* INTRO */
-#intro{
-  position:fixed;
-  width:100%;
-  height:100vh;
-  background:black;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:100;
-  transition:opacity 1s ease;
-}
-
-.logo{
-  color:white;
-  font-size:2rem;
-  letter-spacing:4px;
-  opacity:0;
-  animation:fadeIn 1.5s forwards;
-}
-
-@keyframes fadeIn{
-  to{opacity:1;}
-}
-
-/* BOOK */
-.book{
-  position:relative;
-  width:70vw;
-  height:85vh;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  perspective:3000px;
-}
-
-/* SHEET (lembar buku) */
-.sheet{
-  position:absolute;
-  width:100%;
-  height:100%;
-  transform-origin:left;
-  transform-style:preserve-3d;
-  transition:transform 1.2s ease-in-out;
-  backface-visibility:hidden;
-}
-
-/* COVER */
-.coverSheet{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#111;
-}
-
-.coverSheet img{
-  max-width:100%;
-  max-height:100%;
-  object-fit:contain;
-}
-
-/* PAGES */
-.page{
-  position:absolute;
-  width:50%;
-  height:100%;
-  top:0;
-  overflow:hidden;
-  backface-visibility:hidden;
-}
-
-.page img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-/* LEFT PAGE */
-.left{
-  left:0;
-  width:50.1%;
-}
-
-/* RIGHT PAGE */
-.right{
-  right:0;
-  width:50.1%;
-}
-
-/* FLIP */
-.sheet.flipped{
-  transform:rotateY(-180deg);
-}
-
-/* BUTTON */
-.startBtn{
-  position:absolute;
-  bottom:30px;
-  left:50%;
-  transform:translateX(-50%);
-  padding:10px 20px;
-  border:none;
-  border-radius:20px;
-  background:white;
-  cursor:pointer;
-}
-  /* ========================= */
-/* RESPONSIVE TABLET & HP */
-/* ========================= */
-
-@media (max-width: 1024px){
-
-  body{
-    overflow:auto; /* biar tidak terpotong */
-  }
-
-  .book{
-    width:95vw;
-    height:auto;
-    aspect-ratio: 3 / 2;
-    max-height:90vh;
-  }
-  /* ========================= */
-/* END SCREEN FIXED CENTER  */
-/* ========================= */
-
-.endScreen{
-  position:absolute;
-  inset:0; /* full area */
-  background:rgba(0,0,0,0.8);
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:row;
-  gap:20px;
-
-  opacity:0;
-  pointer-events:none;
-  transition:opacity 0.3s ease;
-
-  z-index:999;
-}
-
-.endScreen.show{
-  opacity:1;
-  pointer-events:auto;
-}
-
-/* BUTTON STYLE */
-.endScreen button{
-  background:#E79A34;     /* warna orange */
-  color:white;
-  border:none;
-  padding:16px 42px;
-  font-size:18px;
-  border-radius:40px;
-  cursor:pointer;
-  font-weight:600;
-  transition:all 0.2s ease;
-}
-
-.endScreen button:hover{
-  transform:scale(1.05);
-  background:#d88c26;
-}
-
-}
-</style>
 
 <script>
 let currentSheet = 0;
@@ -297,59 +305,50 @@ window.onload = function(){
 
   sheets = document.querySelectorAll(".sheet");
 
-  // Auto z-index
-  sheets.forEach((sheet, index) => {
+  sheets.forEach((sheet, index)=>{
     sheet.style.zIndex = sheets.length - index;
   });
- 
+
   const intro = document.getElementById("intro");
   const sound = document.getElementById("whoosh");
   const bgMusic = document.getElementById("bgMusic");
-  bgMusic.volume = 0.1;
-
-  const book  = document.getElementById("book");
+  const book = document.getElementById("book");
   const startBtn = document.querySelector(".startBtn");
   const endScreen = document.getElementById("endScreen");
   const restartBtn = document.getElementById("restartBtn");
   const exitBtn = document.getElementById("exitBtn");
 
-  // Play intro sound
+  bgMusic.volume = 0.1;
+
   sound.play().catch(()=>{});
 
-  // Hide intro after 3 seconds
   setTimeout(()=>{
-    intro.style.opacity = "0";
-    setTimeout(()=>{
-      intro.style.display = "none";
-    },1000);
+    intro.style.opacity="0";
+    setTimeout(()=>intro.style.display="none",1000);
   },3000);
 
-  // Start button
-  startBtn.addEventListener("click", function(e){
+  startBtn.addEventListener("click",function(e){
     e.stopPropagation();
     bgMusic.play().catch(()=>{});
     flipNext();
   });
 
-  // Click kiri / kanan
-  book.addEventListener("click", function(e){
+  book.addEventListener("click",function(e){
 
-    // Jangan flip kalau end screen sedang tampil
     if(endScreen.classList.contains("show")) return;
 
     const rect = book.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
 
-    if(clickX > rect.width / 2){
+    if(clickX > rect.width/2){
       flipNext();
-    } else {
+    }else{
       flipPrev();
     }
 
   });
 
-  // ===== TOMBOL ULANGI =====
-  restartBtn.addEventListener("click", function(e){
+  restartBtn.addEventListener("click",function(e){
     e.stopPropagation();
 
     endScreen.classList.remove("show");
@@ -363,28 +362,24 @@ window.onload = function(){
     bgMusic.play().catch(()=>{});
   });
 
-  // ===== TOMBOL KELUAR =====
-  exitBtn.addEventListener("click", function(e){
+  exitBtn.addEventListener("click",function(e){
     e.stopPropagation();
-    window.location.href = "../../index.html"; // ganti jika beda
+    window.location.href="../../index.html";
   });
 
 };
 
-// NEXT
 function flipNext(){
   if(currentSheet < sheets.length){
     sheets[currentSheet].classList.add("flipped");
     currentSheet++;
 
     if(currentSheet === sheets.length){
-      const endScreen = document.getElementById("endScreen");
-      endScreen.classList.add("show");
+      document.getElementById("endScreen").classList.add("show");
     }
   }
 }
 
-// PREV
 function flipPrev(){
   if(currentSheet > 0){
     currentSheet--;
@@ -392,3 +387,6 @@ function flipPrev(){
   }
 }
 </script>
+
+</body>
+</html>
