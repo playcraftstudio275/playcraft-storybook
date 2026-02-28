@@ -413,13 +413,27 @@ function flipPrev(){
 function updatePageNumber(){
 
   const pageNumber = document.getElementById("pageNumber");
+  const endScreen = document.getElementById("endScreen");
 
-  // Sembunyikan kalau di cover ATAU sudah di halaman akhir
-  if(currentSheet === 0 || currentSheet > totalPages){
+  // Kalau di cover
+  if(currentSheet === 0){
     pageNumber.style.display = "none";
     return;
   }
 
+  // Kalau end screen sedang tampil
+  if(endScreen.classList.contains("show")){
+    pageNumber.style.display = "none";
+    return;
+  }
+
+  // Kalau melewati total halaman
+  if(currentSheet > totalPages){
+    pageNumber.style.display = "none";
+    return;
+  }
+
+  // Normal tampil
   pageNumber.style.display = "block";
   pageNumber.textContent = currentSheet + " / " + totalPages;
 }
