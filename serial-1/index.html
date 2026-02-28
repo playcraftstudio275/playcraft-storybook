@@ -1,1 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serial 1 - Pipi dan Kisah-Kisah yang Membesarkan Hati</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== GLOBAL RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color:white;
+  padding:60px 20px;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* ===== BACKGROUND STARS ===== */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:radial-gradient(white 1px, transparent 1px);
+  background-size:40px 40px;
+  opacity:0.06;
+  animation:moveStars 120s linear infinite;
+  z-index:0;
+  pointer-events:none;
+}
+
+@keyframes moveStars{
+  from{transform:translate(0,0);}
+  to{transform:translate(200px,200px);}
+}
+
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  position:relative;
+  z-index:1;
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn{
+  display:inline-block;
+  margin-bottom:30px;
+  text-decoration:none;
+  color:#ffb74d;
+  font-size:14px;
+}
+
+.back-btn:hover{
+  text-decoration:underline;
+}
+
+/* ===== TITLE ===== */
+h1{
+  font-family:'Baloo 2', cursive;
+  font-size:clamp(2rem,5vw,3rem);
+  margin-bottom:15px;
+  text-shadow:0 0 12px rgba(255,255,255,0.3);
+}
+
+/* ===== DESCRIPTION ===== */
+.description{
+  max-width:800px;
+  line-height:1.7;
+  opacity:0.85;
+  margin-bottom:50px;
+  font-size:clamp(0.9rem,2vw,1rem);
+}
+
+/* ===== EPISODE GRID ===== */
+.episode-grid{
+  display:grid;
+  gap:20px;
+  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+}
+
+/* ===== EPISODE CARD ===== */
+.episode-card{
+  background:rgba(255,255,255,0.08);
+  padding:25px;
+  border-radius:20px;
+  text-decoration:none;
+  color:white;
+  transition:0.3s;
+  backdrop-filter:blur(6px);
+}
+
+.episode-card:hover{
+  transform:translateY(-5px);
+  background:rgba(255,255,255,0.15);
+}
+
+.episode-number{
+  font-size:14px;
+  opacity:0.6;
+  margin-bottom:8px;
+}
+
+.episode-title{
+  font-size:1.05rem;
+  font-weight:500;
+}
+
+/* ===== ANIMATION ===== */
+.container{
+  animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <a href="../" class="back-btn">← Kembali ke Menu Utama</a>
+
+  <h1>Pipi dan Kisah-Kisah yang Membesarkan Hati</h1>
+
+  <p class="description">
+    Di balik cerita tentang biji ajaib, sungai bersih, badai hutan, dan pelangi di dalam hati,
+    tersimpan pesan sederhana: tumbuh itu proses.
+    <br><br>
+    Serial ini dirancang untuk anak usia 4–6 tahun dengan cerita penuh warna dan petualangan seru,
+    namun juga menjadi pengingat bagi orang tua bahwa setiap fase anak adalah perjalanan
+    yang harus ditemani, bukan dipercepat.
+    <br><br>
+    <strong>Bukan sekadar storybook.</strong><br>
+    Ini adalah kisah tentang tumbuh — untuk anak dan untuk orang tua.
+  </p>
+
+  <div class="episode-grid">
+
+    <a href="episode-1/" class="episode-card">
+      <div class="episode-number">Episode 1</div>
+      <div class="episode-title">Mangga Emas Pipi</div>
+    </a>
+
+    <a href="episode-2/" class="episode-card">
+      <div class="episode-number">Episode 2</div>
+      <div class="episode-title">Petualangan Biji Ajaib Pipi</div>
+    </a>
+
+    <a href="episode-3/" class="episode-card">
+      <div class="episode-number">Episode 3</div>
+      <div class="episode-title">Pesta Kebun Pelangi Pipi</div>
+    </a>
+
+    <a href="episode-4/" class="episode-card">
+      <div class="episode-number">Episode 4</div>
+      <div class="episode-title">Pipi dan Rahasia Gua Berkilau</div>
+    </a>
+
+    <a href="episode-5/" class="episode-card">
+      <div class="episode-number">Episode 5</div>
+      <div class="episode-title">Pipi dan Pahlawan Sungai Kebersihan</div>
+    </a>
+
+    <a href="episode-6/" class="episode-card">
+      <div class="episode-number">Episode 6</div>
+      <div class="episode-title">Pipi dan Badai Besar di Hutan</div>
+    </a>
+
+    <a href="episode-7/" class="episode-card">
+      <div class="episode-number">Episode 7</div>
+      <div class="episode-title">Pipi dan Olimpiade Hutan Ceria</div>
+    </a>
+
+    <a href="episode-8/" class="episode-card">
+      <div class="episode-number">Episode 8</div>
+      <div class="episode-title">Pipi dan Festival Layang-Layang Pelangi</div>
+    </a>
+
+    <a href="episode-9/" class="episode-card">
+      <div class="episode-number">Episode 9</div>
+      <div class="episode-title">Pipi dan Rahasia Buah Pengetahuan</div>
+    </a>
+
+    <a href="episode-10/" class="episode-card">
+      <div class="episode-number">Episode 10</div>
+      <div class="episode-title">Pipi dan Parade Musik Hutan</div>
+    </a>
+
+    <a href="episode-11/" class="episode-card">
+      <div class="episode-number">Episode 11</div>
+      <div class="episode-title">Pipi dan Rahasia Lembah Angka</div>
+    </a>
+
+    <a href="episode-12/" class="episode-card">
+      <div class="episode-number">Episode 12</div>
+      <div class="episode-title">Pipi dan Pelangi di Dalam Hati</div>
+    </a>
+
+  </div>
+
+</div>
+
+</body>
+</html>
