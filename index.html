@@ -13,12 +13,14 @@
     }
 
     body {
-      height: 100vh;
+      min-height: 100vh; /* ganti dari height */
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      background-attachment: fixed; /* supaya gradient tidak patah */
       display: flex;
       justify-content: center;
-      align-items: center;
-      overflow: auto;
+      align-items: flex-start; /* supaya konten mulai dari atas */
+      padding-top: 60px; /* beri jarak atas */
+      overflow-y: auto;
       color: white;
     }
 
