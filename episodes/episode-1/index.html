@@ -252,19 +252,17 @@ body{
   top:0;
   left:0;
 
-  background:rgba(0,0,0,0.7);
+  background:rgba(0,0,0,0.75);
 
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
-  gap:20px;
 
-  opacity:0;              /* awalnya tidak terlihat */
-  pointer-events:none;    /* tidak bisa diklik */
-  transition:opacity 0.5s ease;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.4s ease;
 
-  z-index:50;
+  z-index:100;
 }
 
 .endScreen.show{
@@ -273,11 +271,20 @@ body{
 }
 
 .endScreen button{
-  padding:12px 24px;
-  font-size:16px;
+  background:#E79A34;        /* warna orange episode */
+  color:white;
   border:none;
-  border-radius:20px;
+  padding:14px 40px;
+  font-size:18px;
+  border-radius:40px;
   cursor:pointer;
+  margin:10px;
+  transition:all 0.2s ease;
+}
+
+.endScreen button:hover{
+  transform:scale(1.05);
+  background:#d88c26;
 }
 
 }
@@ -360,7 +367,7 @@ window.onload = function(){
   // ===== TOMBOL KELUAR =====
   exitBtn.addEventListener("click", function(e){
     e.stopPropagation();
-    window.location.href = "index.html"; // ganti jika beda
+    window.location.href = "../../index.html"; // ganti jika beda
   });
 
 };
