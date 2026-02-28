@@ -290,15 +290,22 @@ let sheets;
 window.onload = function(){
 
   sheets = document.querySelectorAll(".sheet");
+
+  // Auto z-index
   sheets.forEach((sheet, index) => {
-  sheet.style.zIndex = sheets.length - index;
-});
+    sheet.style.zIndex = sheets.length - index;
+  });
+ 
   const intro = document.getElementById("intro");
   const sound = document.getElementById("whoosh");
   const bgMusic = document.getElementById("bgMusic");
-bgMusic.volume = 0.1; // supaya tidak terlalu keras
+  bgMusic.volume = 0.1;
+
   const book  = document.getElementById("book");
   const startBtn = document.querySelector(".startBtn");
+  const endScreen = document.getElementById("endScreen");
+  const restartBtn = document.getElementById("restartBtn");
+  const exitBtn = document.getElementById("exitBtn");
 
   // Play intro sound
   sound.play().catch(()=>{});
@@ -311,26 +318,49 @@ bgMusic.volume = 0.1; // supaya tidak terlalu keras
     },1000);
   },3000);
 
-  // Start button (cover)
+  // Start button
   startBtn.addEventListener("click", function(e){
-  e.stopPropagation();
+    e.stopPropagation();
+    bgMusic.play().catch(()=>{});
+    flipNext();
+  });
 
-  bgMusic.play().catch(()=>{});
-  flipNext();
-});
-
-  // Click left/right detection
+  // Click kiri / kanan
   book.addEventListener("click", function(e){
+
+    // Jangan flip kalau end screen sedang tampil
+    if(endScreen.classList.contains("show")) return;
 
     const rect = book.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
 
     if(clickX > rect.width / 2){
-      flipNext();   // Klik kanan → Next
+      flipNext();
     } else {
-      flipPrev();   // Klik kiri → Prev
+      flipPrev();
     }
 
+  });
+
+  // ===== TOMBOL ULANGI =====
+  restartBtn.addEventListener("click", function(e){
+    e.stopPropagation();
+
+    endScreen.classList.remove("show");
+
+    while(currentSheet > 0){
+      currentSheet--;
+      sheets[currentSheet].classList.remove("flipped");
+    }
+
+    bgMusic.currentTime = 0;
+    bgMusic.play().catch(()=>{});
+  });
+
+  // ===== TOMBOL KELUAR =====
+  exitBtn.addEventListener("click", function(e){
+    e.stopPropagation();
+    window.location.href = "index.html"; // ganti jika beda
   });
 
 };
@@ -341,7 +371,6 @@ function flipNext(){
     sheets[currentSheet].classList.add("flipped");
     currentSheet++;
 
-    // Jika sudah sampai halaman terakhir
     if(currentSheet === sheets.length){
       const endScreen = document.getElementById("endScreen");
       endScreen.classList.add("show");
@@ -357,5 +386,3 @@ function flipPrev(){
   }
 }
 </script>
-  
-</body>
