@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Playcraft Storybook</title>
 
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
 
 /* ===== GLOBAL RESET ===== */
@@ -12,7 +15,7 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:Arial, sans-serif;
+  font-family:'Poppins', sans-serif;
 }
 
 /* ===== BODY STYLE ===== */
@@ -57,13 +60,14 @@ body::before{
   z-index:2;
 }
 
-/* ===== TITLE WITH GLOW ===== */
+/* ===== TITLE ===== */
 h1{
-  font-size:clamp(2.2rem, 5vw, 3.5rem);
+  font-family:'Baloo 2', cursive;
+  font-size:clamp(2.5rem, 6vw, 3.8rem);
   letter-spacing:2px;
   margin-bottom:10px;
-  text-shadow:0 0 10px rgba(255,255,255,0.4),
-              0 0 20px rgba(255,152,0,0.3);
+  text-shadow:0 0 15px rgba(255,255,255,0.4),
+              0 0 25px rgba(255,152,0,0.3);
 }
 
 /* ===== TAGLINE ===== */
@@ -95,7 +99,17 @@ h1{
   color:white;
   cursor:pointer;
   transition:0.3s;
+  opacity:0;
+  transform:translateY(15px);
+  animation:buttonFade 0.8s ease forwards;
 }
+
+/* Stagger delay */
+.serial-btn:nth-child(4){ animation-delay:0.3s; }
+.serial-btn:nth-child(5){ animation-delay:0.45s; }
+.serial-btn:nth-child(6){ animation-delay:0.6s; }
+.serial-btn:nth-child(7){ animation-delay:0.75s; }
+.serial-btn:nth-child(8){ animation-delay:0.9s; }
 
 .serial-btn:hover{
   transform:scale(1.05);
@@ -117,10 +131,17 @@ h1{
   }
 }
 
-/* ===== ANIMATION ===== */
+/* ===== ANIMATIONS ===== */
 @keyframes fadeIn{
   from{opacity:0; transform:translateY(20px);}
   to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes buttonFade{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 </style>
@@ -153,7 +174,6 @@ h1{
 </div>
 
 <script>
-
 function goToSerial(serial){
   document.body.style.opacity="0";
   document.body.style.transition="0.4s";
@@ -161,7 +181,6 @@ function goToSerial(serial){
     window.location.href = "serial-" + serial + "/";
   },400);
 }
-
 </script>
 
 </body>
