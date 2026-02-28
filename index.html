@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Playcraft Storybook - Serial 1</title>
+  <title>Playcraft Storybook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -25,33 +25,66 @@
     .overlay {
       text-align: center;
       animation: fadeIn 1.5s ease-in-out;
+      width: 100%;
+      max-width: 500px;
     }
 
     h1 {
       font-size: 3rem;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       letter-spacing: 2px;
     }
 
-    p {
-      margin-bottom: 30px;
-      opacity: 0.8;
-    }
-
-    .btn {
+    /* ===============================
+       SERIAL BUTTON
+       =============================== */
+    .serial-btn {
       padding: 15px 30px;
-      font-size: 18px;
+      font-size: 20px;
       border: none;
       border-radius: 40px;
       background: #ff9800;
       color: white;
       cursor: pointer;
       transition: 0.3s;
+      width: 100%;
     }
 
-    .btn:hover {
+    .serial-btn:hover {
       transform: scale(1.05);
       background: #ffb74d;
+    }
+
+    /* ===============================
+       EPISODE CONTAINER
+       =============================== */
+    .episode-list {
+      margin-top: 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .episode-list.show {
+      max-height: 500px;
+    }
+
+    .episode-btn {
+      display: block;
+      width: 100%;
+      margin: 8px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .episode-btn:hover {
+      background: rgba(255,255,255,0.25);
+      transform: scale(1.02);
     }
 
     @keyframes fadeIn {
@@ -65,19 +98,51 @@
 
 <div class="overlay">
   <h1>Playcraft Storybook</h1>
-  <p>Serial 1</p>
-  <div class="episode-list">
-  <button class="btn" onclick="goToEpisode(1)">Episode 1</button>
-</div>
+
+  <!-- SERIAL BUTTON -->
+  <button class="serial-btn" onclick="toggleSerial('serial1')">
+    Serial 1
+  </button>
+
+  <!-- EPISODE LIST -->
+  <div class="episode-list" id="serial1">
+
+    <button class="episode-btn" onclick="goToEpisode(1)">Episode 1</button>
+    <button class="episode-btn" onclick="goToEpisode(2)">Episode 2</button>
+    <button class="episode-btn" onclick="goToEpisode(3)">Episode 3</button>
+    <button class="episode-btn" onclick="goToEpisode(4)">Episode 4</button>
+    <button class="episode-btn" onclick="goToEpisode(5)">Episode 5</button>
+    <button class="episode-btn" onclick="goToEpisode(6)">Episode 6</button>
+    <button class="episode-btn" onclick="goToEpisode(7)">Episode 7</button>
+    <button class="episode-btn" onclick="goToEpisode(8)">Episode 8</button>
+    <button class="episode-btn" onclick="goToEpisode(9)">Episode 9</button>
+    <button class="episode-btn" onclick="goToEpisode(10)">Episode 10</button>
+    <button class="episode-btn" onclick="goToEpisode(11)">Episode 11</button>
+    <button class="episode-btn" onclick="goToEpisode(12)">Episode 12</button>
+
+  </div>
 </div>
 
 <script>
+
+  /* ===============================
+     TOGGLE SERIAL MENU
+     =============================== */
+  function toggleSerial(id) {
+    const menu = document.getElementById(id);
+    menu.classList.toggle("show");
+  }
+
+  /* ===============================
+     GO TO EPISODE
+     =============================== */
   function goToEpisode(ep) {
-  document.body.style.opacity = "0";
-  setTimeout(() => {
-    window.location.href = "episodes/episode-" + ep + "/";
-  }, 500);
-}
+    document.body.style.opacity = "0";
+    setTimeout(() => {
+      window.location.href = "episodes/episode-" + ep + "/";
+    }, 500);
+  }
+
 </script>
 
 </body>
