@@ -27,12 +27,23 @@
       animation: fadeIn 1.5s ease-in-out;
       width: 100%;
       max-width: 500px;
+      padding: 20px;
     }
 
     h1 {
       font-size: 3rem;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       letter-spacing: 2px;
+    }
+
+    /* ===============================
+       CREDIT
+       =============================== */
+    .credit {
+      font-size: 14px;
+      opacity: 0.6;
+      margin-bottom: 40px; /* lebih lega */
+      letter-spacing: 1px;
     }
 
     /* ===============================
@@ -48,6 +59,7 @@
       cursor: pointer;
       transition: 0.3s;
       width: 100%;
+      margin-bottom: 15px;
     }
 
     .serial-btn:hover {
@@ -59,14 +71,14 @@
        EPISODE CONTAINER
        =============================== */
     .episode-list {
-      margin-top: 20px;
+      margin-top: 10px;
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.5s ease;
     }
 
     .episode-list.show {
-      max-height: 500px;
+      max-height: 600px;
     }
 
     .episode-btn {
@@ -100,14 +112,11 @@
   <h1>Playcraft Storybook</h1>
   <p class="credit">by Langit Studio</p>
 
-  <!-- SERIAL BUTTON -->
   <button class="serial-btn" onclick="toggleSerial('serial1')">
     Serial 1
   </button>
 
-  <!-- EPISODE LIST -->
   <div class="episode-list" id="serial1">
-
     <button class="episode-btn" onclick="goToEpisode(1)">Episode 1</button>
     <button class="episode-btn" onclick="goToEpisode(2)">Episode 2</button>
     <button class="episode-btn" onclick="goToEpisode(3)">Episode 3</button>
@@ -120,40 +129,21 @@
     <button class="episode-btn" onclick="goToEpisode(10)">Episode 10</button>
     <button class="episode-btn" onclick="goToEpisode(11)">Episode 11</button>
     <button class="episode-btn" onclick="goToEpisode(12)">Episode 12</button>
-
   </div>
 </div>
 
 <script>
-
-  /* ===============================
-   CREDIT / BY LINE
-   =============================== */
-.credit{
-  font-size:14px;
-  opacity:0.6;
-  margin-bottom:30px;
-  letter-spacing:1px;
-}
-  
-  /* ===============================
-     TOGGLE SERIAL MENU
-     =============================== */
   function toggleSerial(id) {
     const menu = document.getElementById(id);
     menu.classList.toggle("show");
   }
 
-  /* ===============================
-     GO TO EPISODE
-     =============================== */
   function goToEpisode(ep) {
     document.body.style.opacity = "0";
     setTimeout(() => {
       window.location.href = "episodes/episode-" + ep + "/";
     }, 500);
   }
-
 </script>
 
 </body>
