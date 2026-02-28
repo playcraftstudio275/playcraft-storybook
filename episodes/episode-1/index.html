@@ -311,10 +311,12 @@ body{
 <script>
 let currentSheet = 0;
 let sheets;
+let totalPages;
 
 window.onload = function(){
 
   sheets = document.querySelectorAll(".sheet");
+  totalPages = sheets.length - 1; // cover tidak dihitung
 
   sheets.forEach((sheet, index)=>{
     sheet.style.zIndex = sheets.length - index;
@@ -357,8 +359,6 @@ window.onload = function(){
       flipPrev();
     }
 
-    
-
   });
 
   restartBtn.addEventListener("click",function(e){
@@ -373,6 +373,8 @@ window.onload = function(){
 
     bgMusic.currentTime = 0;
     bgMusic.play().catch(()=>{});
+
+    updatePageNumber(); // reset nomor
   });
 
   exitBtn.addEventListener("click",function(e){
@@ -380,8 +382,10 @@ window.onload = function(){
     window.location.href="../../index.html";
   });
 
+  updatePageNumber(); // panggil saat pertama load
 };
 
+// NEXT
 function flipNext(){
   if(currentSheet < sheets.length){
     sheets[currentSheet].classList.add("flipped");
@@ -390,14 +394,33 @@ function flipNext(){
     if(currentSheet === sheets.length){
       document.getElementById("endScreen").classList.add("show");
     }
+
+    updatePageNumber(); // update nomor
   }
 }
 
+// PREV
 function flipPrev(){
   if(currentSheet > 0){
     currentSheet--;
     sheets[currentSheet].classList.remove("flipped");
   }
+
+  updatePageNumber(); // update nomor
+}
+
+// UPDATE PAGE NUMBER
+function updatePageNumber(){
+
+  const pageNumber = document.getElementById("pageNumber");
+
+  if(currentSheet === 0){
+    pageNumber.style.display = "none";
+    return;
+  }
+
+  pageNumber.style.display = "block";
+  pageNumber.textContent = currentSheet + " / " + totalPages;
 }
 </script>
 
