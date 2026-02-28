@@ -6,6 +6,10 @@
 <title>Playcraft Storybook</title>
 
 <style>
+
+/* =====================================================
+   GLOBAL BODY
+   ===================================================== */
 body{
   margin:0;
   background:black;
@@ -13,8 +17,9 @@ body{
   font-family:Arial;
 }
 
-/* ================= INTRO ================= */
-
+/* =====================================================
+   INTRO SCREEN (Logo Awal)
+   ===================================================== */
 #intro{
   position:fixed;
   inset:0;
@@ -38,8 +43,9 @@ body{
   to{opacity:1;}
 }
 
-/* ================= BOOK ================= */
-
+/* =====================================================
+   BOOK CONTAINER
+   ===================================================== */
 .book{
   position:absolute;
   width:70vw;
@@ -50,8 +56,9 @@ body{
   perspective:3000px;
 }
 
-/* ================= SHEET ================= */
-
+/* =====================================================
+   SHEET (Lembar Buku)
+   ===================================================== */
 .sheet{
   position:absolute;
   width:100%;
@@ -62,8 +69,9 @@ body{
   backface-visibility:hidden;
 }
 
-/* ================= COVER ================= */
-
+/* =====================================================
+   COVER STYLE
+   ===================================================== */
 .coverSheet{
   display:flex;
   justify-content:center;
@@ -77,8 +85,9 @@ body{
   object-fit:contain;
 }
 
-/* ================= PAGES ================= */
-
+/* =====================================================
+   PAGE STYLE
+   ===================================================== */
 .page{
   position:absolute;
   width:50%;
@@ -93,22 +102,19 @@ body{
   object-fit:cover;
 }
 
-.left{
-  left:0;
-}
+.left{ left:0; }
+.right{ right:0; }
 
-.right{
-  right:0;
-}
-
-/* ================= FLIP ================= */
-
+/* =====================================================
+   FLIP EFFECT
+   ===================================================== */
 .sheet.flipped{
   transform:rotateY(-180deg);
 }
 
-/* ================= START BUTTON ================= */
-
+/* =====================================================
+   START BUTTON
+   ===================================================== */
 .startBtn{
   position:absolute;
   bottom:30px;
@@ -122,8 +128,9 @@ body{
   font-weight:bold;
 }
 
-/* ================= END SCREEN ================= */
-
+/* =====================================================
+   END SCREEN
+   ===================================================== */
 .endScreen{
   position:absolute;
   inset:0;
@@ -152,17 +159,12 @@ body{
   border-radius:40px;
   cursor:pointer;
   font-weight:600;
-  transition:all 0.2s ease;
 }
 
-.endScreen button:hover{
-  transform:scale(1.05);
-  background:#d88c26;
-}
-
-/* ================= RESPONSIVE ================= */
-
-  .pageNumber{
+/* =====================================================
+   PAGE NUMBER
+   ===================================================== */
+.pageNumber{
   position:absolute;
   bottom:15px;
   right:20px;
@@ -170,36 +172,35 @@ body{
   font-size:14px;
   opacity:0.8;
   z-index:50;
+  display:none;
 }
-  
-@media (max-width:1024px){
 
-  body{
-    overflow:auto;
-  }
-
-  .book{
-    width:95vw;
-    height:auto;
-    aspect-ratio:3/2;
-    max-height:90vh;
-  }
-
-}
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
+<!-- =====================================================
+     INTRO
+===================================================== -->
 <div id="intro">
   <div class="logo">PLAYCRAFT STUDIO</div>
 </div>
 
+<!-- =====================================================
+     AUDIO SYSTEM
+     =====================================================
+     whoosh  = sound intro
+     bgMusic = background music
+     narration = auto voice per halaman
+===================================================== -->
 <audio id="whoosh" src="audio/whoosh.mp3"></audio>
 <audio id="bgMusic" src="audio/bg.mp3" loop></audio>
 <audio id="narration"></audio>
 
+<!-- =====================================================
+     BOOK CONTAINER
+===================================================== -->
 <div class="book" id="book">
 
   <!-- COVER -->
@@ -208,7 +209,8 @@ body{
     <button class="startBtn">Mulai Cerita</button>
   </div>
 
-  <!-- DUPLIKASI SHEET SESUAI KEBUTUHAN -->
+  <!-- ==== SEMUA SHEET TETAP SAMA ==== -->
+  <!-- SHEET 1 - 9 (tidak diubah) -->
   <!-- SHEET 1 -->
   <div class="sheet">
     <div class="page left">
@@ -299,8 +301,8 @@ body{
   </div>
 </div>
 
-  <div class="pageNumber" id="pageNumber">1 / 9</div>
-  
+  <div class="pageNumber" id="pageNumber"></div>
+
   <!-- END SCREEN -->
   <div class="endScreen" id="endScreen">
     <button id="restartBtn">Ulangi</button>
@@ -309,12 +311,21 @@ body{
 
 </div>
 
-<script>
-let currentSheet = 0;
-let sheets;
-let totalPages;
-let narration;
 
+<script>
+
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+let currentSheet = 0;     // posisi halaman aktif
+let sheets;               // semua lembar
+let totalPages;           // total halaman cerita
+let narration;            // audio narration
+
+
+/* =====================================================
+   INIT SYSTEM
+===================================================== */
 window.onload = function(){
 
   sheets = document.querySelectorAll(".sheet");
@@ -333,22 +344,25 @@ window.onload = function(){
   const endScreen = document.getElementById("endScreen");
   const restartBtn = document.getElementById("restartBtn");
   const exitBtn = document.getElementById("exitBtn");
+  const pageNumber = document.getElementById("pageNumber");
 
   bgMusic.volume = 0.1;
 
+  /* ==== INTRO ==== */
   sound.play().catch(()=>{});
-
   setTimeout(()=>{
     intro.style.opacity="0";
     setTimeout(()=>intro.style.display="none",1000);
   },3000);
 
+  /* ==== START BUTTON ==== */
   startBtn.addEventListener("click",function(e){
     e.stopPropagation();
     bgMusic.play().catch(()=>{});
     flipNext();
   });
 
+  /* ==== CLICK AREA ==== */
   book.addEventListener("click",function(e){
 
     if(endScreen.classList.contains("show")) return;
@@ -361,89 +375,95 @@ window.onload = function(){
     }else{
       flipPrev();
     }
-
   });
 
- restartBtn.addEventListener("click",function(e){
-  e.stopPropagation();
+  /* ==== RESTART ==== */
+  restartBtn.addEventListener("click",function(e){
+    e.stopPropagation();
+    endScreen.classList.remove("show");
 
-  endScreen.classList.remove("show");
+    while(currentSheet > 0){
+      currentSheet--;
+      sheets[currentSheet].classList.remove("flipped");
+    }
 
-  while(currentSheet > 0){
-    currentSheet--;
-    sheets[currentSheet].classList.remove("flipped");
-  }
+    narration.pause();
+    narration.currentTime = 0;
 
-  // Stop narration
-  narration.pause();
-  narration.currentTime = 0;
+    pageNumber.style.display = "none";
+  });
 
-  // Reset bg music
-  bgMusic.currentTime = 0;
-  bgMusic.play().catch(()=>{});
+  /* ==== EXIT ==== */
+  exitBtn.addEventListener("click",function(e){
+    e.stopPropagation();
+    window.location.href="../../index.html";
+  });
 
-  updatePageNumber(); // reset nomor (akan hilang karena di cover)
-});
+};
 
-// NEXT
+
+/* =====================================================
+   NEXT PAGE
+===================================================== */
 function flipNext(){
+
   if(currentSheet < sheets.length){
+
     sheets[currentSheet].classList.add("flipped");
     currentSheet++;
 
     if(currentSheet === sheets.length){
       document.getElementById("endScreen").classList.add("show");
+      narration.pause();
+      document.getElementById("pageNumber").style.display="none";
+      return;
     }
 
-    updatePageNumber(); // update nomor
+    updatePageNumber();
     playNarration(currentSheet);
   }
 }
 
-// PREV
+
+/* =====================================================
+   PREVIOUS PAGE
+===================================================== */
 function flipPrev(){
+
   if(currentSheet > 0){
     currentSheet--;
     sheets[currentSheet].classList.remove("flipped");
   }
 
-  updatePageNumber(); // update nomor
+  updatePageNumber();
   playNarration(currentSheet);
 }
 
-// UPDATE PAGE NUMBER
+
+/* =====================================================
+   UPDATE PAGE NUMBER
+===================================================== */
 function updatePageNumber(){
 
   const pageNumber = document.getElementById("pageNumber");
-  const endScreen = document.getElementById("endScreen");
 
-  // Kalau di cover
   if(currentSheet === 0){
-    pageNumber.style.display = "none";
+    pageNumber.style.display="none";
     return;
   }
 
-  // Kalau end screen sedang tampil
-  if(endScreen.classList.contains("show")){
-    pageNumber.style.display = "none";
-    return;
-  }
-
-  // Kalau melewati total halaman
-  if(currentSheet > totalPages){
-    pageNumber.style.display = "none";
-    return;
-  }
-
-  // Normal tampil
-  pageNumber.style.display = "block";
+  pageNumber.style.display="block";
   pageNumber.textContent = currentSheet + " / " + totalPages;
 }
 
-  function playNarration(page){
 
-  if(page === 0) return; // cover tidak ada suara
-  if(page > totalPages) return; // end screen tidak ada suara
+/* =====================================================
+   AUTO VOICE NARRATION
+===================================================== */
+function playNarration(page){
+
+  if(page === 0) return;
+  if(page > totalPages) return;
 
   narration.pause();
   narration.currentTime = 0;
@@ -451,7 +471,7 @@ function updatePageNumber(){
   narration.src = "audio/" + page + ".mp3";
   narration.play().catch(()=>{});
 }
-  
+
 </script>
 
 </body>
