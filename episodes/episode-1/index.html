@@ -198,6 +198,7 @@ body{
 
 <audio id="whoosh" src="audio/whoosh.mp3"></audio>
 <audio id="bgMusic" src="audio/bg.mp3" loop></audio>
+<audio id="narration"></audio>
 
 <div class="book" id="book">
 
@@ -312,11 +313,13 @@ body{
 let currentSheet = 0;
 let sheets;
 let totalPages;
+let narration;
 
 window.onload = function(){
 
   sheets = document.querySelectorAll(".sheet");
   totalPages = sheets.length - 1; // cover tidak dihitung
+  narration = document.getElementById("narration");
 
   sheets.forEach((sheet, index)=>{
     sheet.style.zIndex = sheets.length - index;
@@ -361,29 +364,26 @@ window.onload = function(){
 
   });
 
-  restartBtn.addEventListener("click",function(e){
-    e.stopPropagation();
+ restartBtn.addEventListener("click",function(e){
+  e.stopPropagation();
 
-    endScreen.classList.remove("show");
+  endScreen.classList.remove("show");
 
-    while(currentSheet > 0){
-      currentSheet--;
-      sheets[currentSheet].classList.remove("flipped");
-    }
+  while(currentSheet > 0){
+    currentSheet--;
+    sheets[currentSheet].classList.remove("flipped");
+  }
 
-    bgMusic.currentTime = 0;
-    bgMusic.play().catch(()=>{});
+  // Stop narration
+  narration.pause();
+  narration.currentTime = 0;
 
-    updatePageNumber(); // reset nomor
-  });
+  // Reset bg music
+  bgMusic.currentTime = 0;
+  bgMusic.play().catch(()=>{});
 
-  exitBtn.addEventListener("click",function(e){
-    e.stopPropagation();
-    window.location.href="../../index.html";
-  });
-
-  updatePageNumber(); // panggil saat pertama load
-};
+  updatePageNumber(); // reset nomor (akan hilang karena di cover)
+});
 
 // NEXT
 function flipNext(){
@@ -396,6 +396,7 @@ function flipNext(){
     }
 
     updatePageNumber(); // update nomor
+    playNarration(currentSheet);
   }
 }
 
@@ -407,6 +408,7 @@ function flipPrev(){
   }
 
   updatePageNumber(); // update nomor
+  playNarration(currentSheet);
 }
 
 // UPDATE PAGE NUMBER
@@ -436,6 +438,18 @@ function updatePageNumber(){
   // Normal tampil
   pageNumber.style.display = "block";
   pageNumber.textContent = currentSheet + " / " + totalPages;
+}
+
+  function playNarration(page){
+
+  if(page === 0) return; // cover tidak ada suara
+  if(page > totalPages) return; // end screen tidak ada suara
+
+  narration.pause();
+  narration.currentTime = 0;
+
+  narration.src = "audio/" + page + ".mp3";
+  narration.play().catch(()=>{});
 }
   
 </script>
