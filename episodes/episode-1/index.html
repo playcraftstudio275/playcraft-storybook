@@ -162,6 +162,16 @@ body{
 
 /* ================= RESPONSIVE ================= */
 
+  .pageNumber{
+  position:absolute;
+  bottom:15px;
+  right:20px;
+  color:white;
+  font-size:14px;
+  opacity:0.8;
+  z-index:50;
+}
+  
 @media (max-width:1024px){
 
   body{
@@ -198,7 +208,6 @@ body{
   </div>
 
   <!-- DUPLIKASI SHEET SESUAI KEBUTUHAN -->
-  
   <!-- SHEET 1 -->
   <div class="sheet">
     <div class="page left">
@@ -289,6 +298,8 @@ body{
   </div>
 </div>
 
+  <div class="pageNumber" id="pageNumber">1 / 9</div>
+  
   <!-- END SCREEN -->
   <div class="endScreen" id="endScreen">
     <button id="restartBtn">Ulangi</button>
@@ -345,6 +356,8 @@ window.onload = function(){
     }else{
       flipPrev();
     }
+
+    
 
   });
 
