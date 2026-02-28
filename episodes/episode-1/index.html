@@ -104,7 +104,11 @@
     <img src="images/9a.jpg">
   </div>
 </div>
-  
+  <!-- END SCREEN -->
+<div class="endScreen" id="endScreen">
+  <button id="restartBtn">Ulangi</button>
+  <button id="exitBtn">Keluar</button>
+</div>
 </div>
 
 <style>
@@ -237,6 +241,44 @@ body{
     aspect-ratio: 3 / 2;
     max-height:90vh;
   }
+  /* ========================= */
+/* END SCREEN */
+/* ========================= */
+
+.endScreen{
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+
+  background:rgba(0,0,0,0.7);
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+
+  opacity:0;              /* awalnya tidak terlihat */
+  pointer-events:none;    /* tidak bisa diklik */
+  transition:opacity 0.5s ease;
+
+  z-index:50;
+}
+
+.endScreen.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.endScreen button{
+  padding:12px 24px;
+  font-size:16px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+}
 
 }
 </style>
