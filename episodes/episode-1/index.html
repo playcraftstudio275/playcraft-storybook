@@ -414,7 +414,8 @@ function updatePageNumber(){
 
   const pageNumber = document.getElementById("pageNumber");
 
-  if(currentSheet === 0){
+  // Sembunyikan kalau di cover ATAU sudah di halaman akhir
+  if(currentSheet === 0 || currentSheet > totalPages){
     pageNumber.style.display = "none";
     return;
   }
@@ -422,6 +423,7 @@ function updatePageNumber(){
   pageNumber.style.display = "block";
   pageNumber.textContent = currentSheet + " / " + totalPages;
 }
+  
 </script>
 
 </body>
