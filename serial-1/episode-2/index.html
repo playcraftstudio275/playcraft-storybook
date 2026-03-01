@@ -71,6 +71,8 @@ body{
 
 /* =====================================================
    SHEET (1 lembar = 2 halaman)
+   FIX MOBILE: Tambah backface-visibility
+   Supaya cover tidak bocor saat flip di iOS & Android
 ===================================================== */
 .sheet{
   position:absolute;
@@ -79,6 +81,10 @@ body{
   transform-origin:left;
   transform-style:preserve-3d;
   transition:transform 1.2s ease-in-out;
+
+  /* === FIX BUG MOBILE FLIP === */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* =====================================================
