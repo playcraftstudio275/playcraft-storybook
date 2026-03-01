@@ -105,7 +105,19 @@ body{
 .page img{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:cover; /* desktop tetap full */
+}
+
+/* ==========================================
+   MOBILE FIX - GAMBAR TIDAK TERPOTONG
+========================================== */
+@media (max-width:768px){
+
+  .page img{
+    object-fit:contain;  /* supaya tidak terpotong */
+    background:black;    /* isi ruang kosong */
+  }
+
 }
 
 .left{ left:0; }
@@ -221,23 +233,98 @@ body{
     <button class="startBtn" id="startBtn">Mulai Cerita</button>
   </div>
 
-  <!-- SHEETS -->
+  <!-- ==== SEMUA SHEET TETAP SAMA ==== -->
+  <!-- SHEET 1 - 9 (tidak diubah) -->
+  <!-- SHEET 1 -->
   <div class="sheet">
-    <div class="page left"><img src="image/1b.jpg"></div>
-    <div class="page right"><img src="image/1a.jpg"></div>
+    <div class="page left">
+      <img src="images/1b.jpg">
+    </div>
+    <div class="page right">
+      <img src="images/1a.jpg">
+    </div>
   </div>
 
+  <!-- SHEET 2 -->
   <div class="sheet">
-    <div class="page left"><img src="image/2b.jpg"></div>
-    <div class="page right"><img src="image/2a.jpg"></div>
+    <div class="page left">
+      <img src="images/2b.jpg">
+    </div>
+    <div class="page right">
+      <img src="images/2a.jpg">
+    </div>
   </div>
 
-  <div class="sheet">
-    <div class="page left"><img src="image/3b.jpg"></div>
-    <div class="page right"><img src="image/3a.jpg"></div>
+<!-- SHEET 3 -->
+<div class="sheet">
+  <div class="page left">
+    <img src="images/3b.jpg">
   </div>
+  <div class="page right">
+    <img src="images/3a.jpg">
+  </div>
+</div>
 
-  <!-- tambahkan sheet lainnya sama seperti sebelumnya -->
+<!-- SHEET 4 -->
+<div class="sheet">
+  <div class="page left">
+    <img src="images/4b.jpg">
+  </div>
+  <div class="page right">
+    <img src="images/4a.jpg">
+  </div>
+</div>
+
+<!-- SHEET 5 -->
+<div class="sheet">
+  <div class="page left">
+    <img src="images/5b.jpg">
+  </div>
+  <div class="page right">
+    <img src="images/5a.jpg">
+  </div>
+</div>
+
+<!-- SHEET 6 -->
+<div class="sheet">
+  <div class="page left">
+    <img src="images/6b.jpg">
+  </div>
+  <div class="page right">
+    <img src="images/6a.jpg">
+  </div>
+</div>
+
+<!-- SHEET 7 -->
+<div class="sheet">
+  <div class="page left">
+    <img src="images/7b.jpg">
+  </div>
+  <div class="page right">
+    <img src="images/7a.jpg">
+  </div>
+</div>
+
+<!-- SHEET 8 -->
+<div class="sheet">
+  <div class="page left">
+    <img src="images/8b.jpg">
+  </div>
+  <div class="page right">
+    <img src="images/8a.jpg">
+  </div>
+</div>
+
+<!-- SHEET 9 -->
+<div class="sheet">
+  <div class="page left">
+    <img src="images/9b.jpg">
+  </div>
+  <div class="page right">
+    <img src="images/9a.jpg">
+  </div>
+</div>
+
 
   <div class="pageNumber" id="pageNumber"></div>
 
