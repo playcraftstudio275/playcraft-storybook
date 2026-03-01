@@ -9,7 +9,7 @@
 
 /* =====================================================
    GLOBAL BODY
-===================================================== */
+   ===================================================== */
 body{
   margin:0;
   background:black;
@@ -18,8 +18,8 @@ body{
 }
 
 /* =====================================================
-   INTRO SCREEN
-===================================================== */
+   INTRO SCREEN (Logo Awal)
+   ===================================================== */
 #intro{
   position:fixed;
   inset:0;
@@ -45,7 +45,7 @@ body{
 
 /* =====================================================
    BOOK CONTAINER
-===================================================== */
+   ===================================================== */
 .book{
   position:absolute;
   width:70vw;
@@ -57,8 +57,8 @@ body{
 }
 
 /* =====================================================
-   SHEET
-===================================================== */
+   SHEET (Lembar Buku)
+   ===================================================== */
 .sheet{
   position:absolute;
   width:100%;
@@ -70,8 +70,8 @@ body{
 }
 
 /* =====================================================
-   COVER
-===================================================== */
+   COVER STYLE
+   ===================================================== */
 .coverSheet{
   display:flex;
   justify-content:center;
@@ -86,8 +86,8 @@ body{
 }
 
 /* =====================================================
-   PAGE
-===================================================== */
+   PAGE STYLE
+   ===================================================== */
 .page{
   position:absolute;
   width:50%;
@@ -106,15 +106,15 @@ body{
 .right{ right:0; }
 
 /* =====================================================
-   FLIP
-===================================================== */
+   FLIP EFFECT
+   ===================================================== */
 .sheet.flipped{
   transform:rotateY(-180deg);
 }
 
 /* =====================================================
-   BUTTON
-===================================================== */
+   START BUTTON
+   ===================================================== */
 .startBtn{
   position:absolute;
   bottom:30px;
@@ -130,7 +130,7 @@ body{
 
 /* =====================================================
    END SCREEN
-===================================================== */
+   ===================================================== */
 .endScreen{
   position:absolute;
   inset:0;
@@ -163,7 +163,7 @@ body{
 
 /* =====================================================
    PAGE NUMBER
-===================================================== */
+   ===================================================== */
 .pageNumber{
   position:absolute;
   bottom:15px;
@@ -180,82 +180,153 @@ body{
 
 <body>
 
+<!-- =====================================================
+     INTRO
+===================================================== -->
 <div id="intro">
   <div class="logo">PLAYCRAFT STUDIO</div>
 </div>
 
-<!-- AUDIO SYSTEM -->
+<!-- =====================================================
+     AUDIO SYSTEM
+     =====================================================
+     whoosh    = sound intro
+     bgMusic   = background music (bg1.mp3)
+     narration = auto voice per halaman
+===================================================== -->
 <audio id="whoosh" src="audio/whoosh.mp3"></audio>
 <audio id="bgMusic" src="audio/bg1.mp3" loop></audio>
 <audio id="narration"></audio>
 
+<!-- =====================================================
+     BOOK CONTAINER
+===================================================== -->
 <div class="book" id="book">
 
-  <!-- COVER -->
+  <!-- =====================================================
+       COVER
+  ===================================================== -->
   <div class="sheet coverSheet">
-    <img src="images/0.jpg">
+    <img src="image/0.jpg">
     <button class="startBtn">Mulai Cerita</button>
   </div>
 
-  <!-- SHEETS -->
-  <!-- Copy sheet structure tetap sama seperti sebelumnya -->
-  
-  <!-- SHEET 1 -->
+  <!-- =====================================================
+       SHEET 1
+  ===================================================== -->
   <div class="sheet">
-    <div class="page left"><img src="images/1b.jpg"></div>
-    <div class="page right"><img src="images/1a.jpg"></div>
+    <div class="page left">
+      <img src="image/1b.jpg">
+    </div>
+    <div class="page right">
+      <img src="image/1a.jpg">
+    </div>
   </div>
 
-  <!-- SHEET 2 -->
+  <!-- =====================================================
+       SHEET 2
+  ===================================================== -->
   <div class="sheet">
-    <div class="page left"><img src="images/2b.jpg"></div>
-    <div class="page right"><img src="images/2a.jpg"></div>
+    <div class="page left">
+      <img src="image/2b.jpg">
+    </div>
+    <div class="page right">
+      <img src="image/2a.jpg">
+    </div>
   </div>
 
-  <!-- SHEET 3 -->
+  <!-- =====================================================
+       SHEET 3
+  ===================================================== -->
   <div class="sheet">
-    <div class="page left"><img src="images/3b.jpg"></div>
-    <div class="page right"><img src="images/3a.jpg"></div>
+    <div class="page left">
+      <img src="image/3b.jpg">
+    </div>
+    <div class="page right">
+      <img src="image/3a.jpg">
+    </div>
   </div>
 
-  <!-- SHEET 4 -->
+  <!-- =====================================================
+       SHEET 4
+  ===================================================== -->
   <div class="sheet">
-    <div class="page left"><img src="images/4b.jpg"></div>
-    <div class="page right"><img src="images/4a.jpg"></div>
+    <div class="page left">
+      <img src="image/4b.jpg">
+    </div>
+    <div class="page right">
+      <img src="image/4a.jpg">
+    </div>
   </div>
 
-  <!-- SHEET 5 -->
+  <!-- =====================================================
+       SHEET 5
+  ===================================================== -->
   <div class="sheet">
-    <div class="page left"><img src="images/5b.jpg"></div>
-    <div class="page right"><img src="images/5a.jpg"></div>
+    <div class="page left">
+      <img src="image/5b.jpg">
+    </div>
+    <div class="page right">
+      <img src="image/5a.jpg">
+    </div>
   </div>
 
-  <!-- SHEET 6 -->
+  <!-- =====================================================
+       SHEET 6
+  ===================================================== -->
   <div class="sheet">
-    <div class="page left"><img src="images/6b.jpg"></div>
-    <div class="page right"><img src="images/6a.jpg"></div>
+    <div class="page left">
+      <img src="image/6b.jpg">
+    </div>
+    <div class="page right">
+      <img src="image/6a.jpg">
+    </div>
   </div>
 
-  <!-- SHEET 7 -->
+  <!-- =====================================================
+       SHEET 7
+  ===================================================== -->
   <div class="sheet">
-    <div class="page left"><img src="images/7b.jpg"></div>
-    <div class="page right"><img src="images/7a.jpg"></div>
+    <div class="page left">
+      <img src="image/7b.jpg">
+    </div>
+    <div class="page right">
+      <img src="image/7a.jpg">
+    </div>
   </div>
 
-  <!-- SHEET 8 -->
+  <!-- =====================================================
+       SHEET 8
+  ===================================================== -->
   <div class="sheet">
-    <div class="page left"><img src="images/8b.jpg"></div>
-    <div class="page right"><img src="images/8a.jpg"></div>
+    <div class="page left">
+      <img src="image/8b.jpg">
+    </div>
+    <div class="page right">
+      <img src="image/8a.jpg">
+    </div>
   </div>
 
-  <!-- SHEET 9 -->
+  <!-- =====================================================
+       SHEET 9
+  ===================================================== -->
   <div class="sheet">
-    <div class="page left"><img src="images/9b.jpg"></div>
-    <div class="page right"><img src="images/9a.jpg"></div>
+    <div class="page left">
+      <img src="image/9b.jpg">
+    </div>
+    <div class="page right">
+      <img src="image/9a.jpg">
+    </div>
   </div>
 
+  <!-- =====================================================
+       PAGE NUMBER
+  ===================================================== -->
   <div class="pageNumber" id="pageNumber"></div>
 
+  <!-- =====================================================
+       END SCREEN
+  ===================================================== -->
   <div class="endScreen" id="endScreen">
     <button id="restartBtn">Ulangi</button>
     <button id="exitBtn">Keluar</button>
@@ -266,23 +337,24 @@ body{
 <script>
 
 /* =====================================================
-   GLOBAL
+   GLOBAL VARIABLES
 ===================================================== */
-let currentSheet = 0;
-let sheets;
-let totalPages;
-let narration;
-let isFlipping = false;
+let currentSheet = 0;     // posisi halaman aktif
+let sheets;               // semua lembar
+let totalPages;           // total halaman (tanpa cover)
+let narration;            // audio narration
+let isFlipping = false;   // anti spam klik saat animasi
 
 /* =====================================================
-   INIT
+   INIT SYSTEM
 ===================================================== */
 window.onload = function(){
 
   sheets = document.querySelectorAll(".sheet");
-  totalPages = sheets.length - 1;
+  totalPages = sheets.length - 1; // cover tidak dihitung
   narration = document.getElementById("narration");
 
+  // Atur urutan z-index supaya flip terlihat natural
   sheets.forEach((sheet, index)=>{
     sheet.style.zIndex = sheets.length - index;
   });
@@ -297,11 +369,21 @@ window.onload = function(){
   const exitBtn = document.getElementById("exitBtn");
   const pageNumber = document.getElementById("pageNumber");
 
-  /* Fade in BG Music */
+  /* ==== INTRO SOUND ==== */
+  sound.play().catch(()=>{});
+
+  setTimeout(()=>{
+    intro.style.opacity="0";
+    setTimeout(()=>intro.style.display="none",1000);
+  },3000);
+
+  /* ==== START BUTTON ==== */
   bgMusic.volume = 0;
 
   startBtn.addEventListener("click",function(e){
     e.stopPropagation();
+
+    // Play background music dengan fade in
     bgMusic.play().catch(()=>{});
 
     let fade = setInterval(()=>{
@@ -315,12 +397,7 @@ window.onload = function(){
     flipNext();
   });
 
-  sound.play().catch(()=>{});
-  setTimeout(()=>{
-    intro.style.opacity="0";
-    setTimeout(()=>intro.style.display="none",1000);
-  },3000);
-
+  /* ==== CLICK AREA BOOK ==== */
   book.addEventListener("click",function(e){
 
     if(endScreen.classList.contains("show")) return;
@@ -335,6 +412,7 @@ window.onload = function(){
     }
   });
 
+  /* ==== RESTART ==== */
   restartBtn.addEventListener("click",function(e){
     e.stopPropagation();
     endScreen.classList.remove("show");
@@ -353,6 +431,7 @@ window.onload = function(){
     pageNumber.style.display = "none";
   });
 
+  /* ==== EXIT ==== */
   exitBtn.addEventListener("click",function(e){
     e.stopPropagation();
     window.location.href="../../index.html";
@@ -361,7 +440,7 @@ window.onload = function(){
 };
 
 /* =====================================================
-   NEXT
+   NEXT PAGE
 ===================================================== */
 function flipNext(){
 
@@ -387,7 +466,7 @@ function flipNext(){
 }
 
 /* =====================================================
-   PREV
+   PREVIOUS PAGE
 ===================================================== */
 function flipPrev(){
 
@@ -406,7 +485,7 @@ function flipPrev(){
 }
 
 /* =====================================================
-   PAGE NUMBER
+   UPDATE PAGE NUMBER
 ===================================================== */
 function updatePageNumber(){
 
@@ -422,7 +501,7 @@ function updatePageNumber(){
 }
 
 /* =====================================================
-   NARRATION
+   AUTO VOICE NARRATION
 ===================================================== */
 function playNarration(page){
 
