@@ -1,241 +1,239 @@
-<!-- ============================= -->
-<!-- PLAYCRAFT STORYBOOK ROOT PAGE -->
-<!-- Sky Theme • Responsive • With Smooth Animation -->
-<!-- ============================= -->
+<!-- ================================================= -->
+<!-- PLAYCRAFT STORYBOOK ROOT PAGE - PASTEL GLOW EDITION -->
+<!-- Cerah • Playful • Aman untuk Anak 3–6 Tahun -->
+<!-- Fully Responsive: Desktop, Tablet, Mobile, Smart TV -->
+<!-- ================================================= -->
 
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>Playcraft Storybook | Creative Play Stories</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- ============================= -->
+    <!-- META BASIC -->
+    <!-- ============================= -->
+    <meta charset="UTF-8">
+    <title>Playcraft Storybook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
+    <!-- ============================= -->
+    <!-- GOOGLE FONT (Soft & Friendly) -->
+    <!-- ============================= -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
 
-/* ================= GLOBAL RESET ================= */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    <!-- ============================= -->
+    <!-- MAIN STYLE START -->
+    <!-- ============================= -->
+    <style>
 
-body{
-    font-family:'Poppins', sans-serif;
-    background:linear-gradient(135deg,#a1c4fd,#c2e9fb);
-    color:#1f2d3d;
-    overflow-x:hidden;
-    opacity:0;
-    transition:opacity 0.6s ease;
-}
+        /* ============================= */
+        /* GLOBAL RESET */
+        /* ============================= */
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
 
-/* Fade in body */
-body.loaded{
-    opacity:1;
-}
+        /* ============================= */
+        /* BODY BACKGROUND - PASTEL GRADIENT */
+        /* Soft Pink + Peach + Baby Blue */
+        /* ============================= */
+        body{
+            font-family:'Fredoka', sans-serif;
+            min-height:100vh;
+            text-align:center;
+            color:#444;
+            background:linear-gradient(135deg,#FFEAF4,#FFF6E9,#EAF6FF);
+            overflow-x:hidden;
+            display:flex;
+            flex-direction:column;
+        }
 
-/* ================= CONTAINER ================= */
-.container{
-    max-width:1200px;
-    margin:0 auto;
-    padding:60px 20px 80px;
-}
+        /* ============================= */
+        /* HERO / HEADER SECTION */
+        /* ============================= */
+        header{
+            padding:60px 20px 30px;
+            animation:fadeIn 1.2s ease;
+        }
 
-/* ================= HERO ================= */
-header{
-    text-align:center;
-    margin-bottom:70px;
-    animation:fadeUp 1s ease;
-}
+        /* ============================= */
+        /* MAIN TITLE WITH SOFT GLOW EFFECT */
+        /* Glow dibuat lembut agar tidak terlalu kontras */
+        /* ============================= */
+        header h1{
+            font-size:clamp(32px,6vw,52px);
+            color:#FF6FA5;
+            text-shadow:
+                0 0 8px rgba(255,111,165,0.4),
+                0 0 16px rgba(255,200,220,0.5);
+        }
 
-header h1{
-    font-family:'Baloo 2', cursive;
-    font-size:clamp(2.5rem,6vw,4rem);
-    color:#1b3a57;
-    margin-bottom:15px;
-}
+        /* ============================= */
+        /* TAGLINE */
+        /* ============================= */
+        .tagline{
+            margin-top:12px;
+            font-size:clamp(16px,2.5vw,22px);
+            color:#6A7FDB;
+        }
 
-.tagline{
-    font-size:clamp(1rem,2vw,1.3rem);
-    font-weight:500;
-    margin-bottom:20px;
-}
+        /* ============================= */
+        /* DESCRIPTION TEXT */
+        /* ============================= */
+        header p{
+            margin-top:15px;
+            font-size:clamp(14px,2vw,18px);
+            max-width:650px;
+            margin-left:auto;
+            margin-right:auto;
+            line-height:1.6;
+        }
 
-header p{
-    max-width:700px;
-    margin:0 auto;
-    line-height:1.7;
-    opacity:0.85;
-    font-size:clamp(0.9rem,2vw,1rem);
-}
+        /* ============================= */
+        /* SECTION TITLE */
+        /* ============================= */
+        .section-title{
+            margin-top:50px;
+            font-size:clamp(22px,4vw,30px);
+            color:#FF9E57;
+            animation:fadeIn 1.4s ease;
+        }
 
-/* ================= SECTION TITLE ================= */
-.section-title{
-    text-align:center;
-    margin:70px 0 40px;
-    font-family:'Baloo 2', cursive;
-    font-size:clamp(1.8rem,4vw,2.5rem);
-    color:#1b3a57;
-}
+        /* ============================= */
+        /* SERIAL CONTAINER - FLEX RESPONSIVE */
+        /* ============================= */
+        .serial-container{
+            display:flex;
+            justify-content:center;
+            flex-wrap:wrap;
+            gap:25px;
+            padding:40px 20px;
+            animation:fadeIn 1.6s ease;
+        }
 
-/* ================= SERIAL GRID ================= */
-.serial-container{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:25px;
-    max-width:1000px;
-    margin:0 auto;
-}
+        /* ============================= */
+        /* SERIAL CARD STYLE */
+        /* Pastel Card + Soft Shadow */
+        /* ============================= */
+        .serial-card{
+            background:#ffffff;
+            width:240px;
+            padding:25px;
+            border-radius:25px;
+            box-shadow:
+                0 8px 20px rgba(255,150,200,0.15),
+                0 4px 10px rgba(150,200,255,0.15);
+            transition:0.4s;
+            cursor:pointer;
+        }
 
-/* ================= SERIAL CARD ================= */
-.serial-card{
-    background:white;
-    padding:30px 25px;
-    border-radius:24px;
-    box-shadow:0 15px 35px rgba(0,0,0,0.08);
-    transition:0.3s ease;
-    text-align:center;
-    opacity:0;
-    transform:translateY(20px);
-    animation:cardFade 0.8s ease forwards;
-}
+        /* Hover Effect Desktop Only */
+        @media (hover:hover){
+            .serial-card:hover{
+                transform:translateY(-10px) scale(1.03);
+            }
+        }
 
-/* Stagger delay */
-.serial-card:nth-child(1){ animation-delay:0.3s; }
-.serial-card:nth-child(2){ animation-delay:0.5s; }
-.serial-card:nth-child(3){ animation-delay:0.7s; }
+        /* ============================= */
+        /* CARD TITLE */
+        /* ============================= */
+        .serial-card h3{
+            margin-bottom:8px;
+            color:#FF6FA5;
+        }
 
-.serial-card:hover{
-    transform:translateY(-6px);
-}
+        /* ============================= */
+        /* CARD DESCRIPTION */
+        /* ============================= */
+        .serial-card p{
+            font-size:14px;
+            margin-bottom:12px;
+        }
 
-.serial-card h3{
-    font-family:'Baloo 2', cursive;
-    color:#1b3a57;
-    margin-bottom:10px;
-    font-size:1.3rem;
-}
+        /* ============================= */
+        /* BUTTON STYLE - PASTEL BLUE */
+        /* ============================= */
+        .btn{
+            display:inline-block;
+            padding:10px 18px;
+            background:#7BA7FF;
+            color:white;
+            border-radius:20px;
+            text-decoration:none;
+            font-size:14px;
+            transition:0.3s;
+        }
 
-.serial-card p{
-    font-size:0.9rem;
-    opacity:0.8;
-    margin-bottom:15px;
-    line-height:1.6;
-}
+        .btn:hover{
+            background:#5C8DF6;
+        }
 
-.btn{
-    display:inline-block;
-    padding:10px 18px;
-    background:#ffb347;
-    color:white;
-    text-decoration:none;
-    border-radius:20px;
-    font-size:0.9rem;
-    transition:0.3s;
-}
+        /* ============================= */
+        /* FOOTER STYLE */
+        /* ============================= */
+        footer{
+            margin-top:auto;
+            padding:25px;
+            font-size:13px;
+            background:rgba(255,255,255,0.6);
+            backdrop-filter:blur(5px);
+        }
 
-.btn:hover{
-    background:#ff9800;
-}
+        /* ============================= */
+        /* FADE IN ANIMATION */
+        /* ============================= */
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(20px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
 
-/* ================= VALUE SECTION ================= */
-.value-section{
-    margin-top:90px;
-}
-
-.value-grid{
-    display:grid;
-    gap:25px;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-}
-
-.value-card{
-    background:rgba(255,255,255,0.6);
-    backdrop-filter:blur(6px);
-    padding:25px;
-    border-radius:20px;
-    text-align:center;
-    opacity:0;
-    transform:translateY(20px);
-    animation:cardFade 0.8s ease forwards;
-}
-
-.value-card:nth-child(1){ animation-delay:1s; }
-.value-card:nth-child(2){ animation-delay:1.2s; }
-.value-card:nth-child(3){ animation-delay:1.4s; }
-.value-card:nth-child(4){ animation-delay:1.6s; }
-
-.value-card h4{
-    font-family:'Baloo 2', cursive;
-    margin-bottom:8px;
-}
-
-/* ================= FOOTER ================= */
-footer{
-    text-align:center;
-    margin-top:80px;
-    padding:30px 20px;
-    font-size:0.85rem;
-    opacity:0.7;
-}
-
-/* ================= ANIMATIONS ================= */
-@keyframes fadeUp{
-    from{opacity:0; transform:translateY(25px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-@keyframes cardFade{
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* ================= SMART TV / LARGE SCREEN ================= */
-@media (min-width:1600px){
-    .container{
-        max-width:1400px;
-    }
-}
-
-</style>
+    </style>
 </head>
 
 <body>
 
-<div class="container">
-
+<!-- ============================= -->
+<!-- HEADER / HERO AREA -->
+<!-- ============================= -->
 <header>
     <h1>Playcraft Storybook</h1>
     <div class="tagline">Creative Play Stories for Children & Families</div>
     <p>
-        Playcraft Storybook adalah ruang cerita digital untuk anak dan keluarga.
-        Setiap kisah dirancang untuk membangun imajinasi, kedekatan,
-        dan momen hangat bersama.
+        Ruang cerita digital yang hangat dan penuh imajinasi.
+        Dirancang untuk membangun kedekatan anak dan keluarga
+        melalui momen membaca yang menyenangkan.
     </p>
 </header>
 
+<!-- ============================= -->
+<!-- STORY LIST SECTION -->
+<!-- ============================= -->
 <h2 class="section-title">📚 Explore Our Stories</h2>
 
 <div class="serial-container">
 
+    <!-- SERIAL 1 -->
     <div class="serial-card">
-        <h3>Pipi dan Kisah-Kisah yang Membesarkan Hati</h3>
-        <p>
-            Petualangan tentang biji ajaib, pelangi, dan proses tumbuh
-            yang indah untuk anak dan orang tua.
-        </p>
-        <a href="serial-1/" class="btn">Buka Serial</a>
+        <h3>Serial 1</h3>
+        <p>Petualangan seru penuh imajinasi dan pesan kebaikan.</p>
+        <a href="serial-1/index.html" class="btn">Baca Cerita</a>
     </div>
 
+    <!-- SERIAL 2 -->
     <div class="serial-card">
         <h3>Serial 2</h3>
         <p>Coming Soon ✨</p>
         <a href="#" class="btn">Soon</a>
     </div>
 
+    <!-- SERIAL 3 -->
     <div class="serial-card">
         <h3>Serial 3</h3>
         <p>Coming Soon ✨</p>
@@ -244,57 +242,12 @@ footer{
 
 </div>
 
-<section class="value-section">
-
-<h2 class="section-title">✨ Kenapa Storybook Ini Spesial?</h2>
-
-<div class="value-grid">
-    <div class="value-card">
-        <h4>👶 Ramah Anak</h4>
-        <p>Desain lembut dan cerita sederhana untuk usia 3–6 tahun.</p>
-    </div>
-    <div class="value-card">
-        <h4>🎧 Audio Hangat</h4>
-        <p>Bisa dibacakan atau didengarkan bersama keluarga.</p>
-    </div>
-    <div class="value-card">
-        <h4>🎨 Aktivitas Kreatif</h4>
-        <p>Ada bonus origami, drawing, dan mini craft.</p>
-    </div>
-    <div class="value-card">
-        <h4>👨‍👩‍👧 Momen Keluarga</h4>
-        <p>Membangun kedekatan lewat cerita dan imajinasi.</p>
-    </div>
-</div>
-
-</section>
-
-</div>
-
+<!-- ============================= -->
+<!-- FOOTER -->
+<!-- ============================= -->
 <footer>
-© 2026 Playcraft Studio • All Rights Reserved
+    © 2026 Playcraft Studio • Made with ❤️ for Children & Families
 </footer>
-
-<script>
-/* Fade in saat halaman selesai load */
-window.addEventListener("load", function(){
-    document.body.classList.add("loaded");
-});
-
-/* Smooth fade-out saat pindah halaman */
-document.querySelectorAll("a").forEach(link=>{
-    link.addEventListener("click", function(e){
-        const target = this.getAttribute("href");
-        if(target && !target.startsWith("#")){
-            e.preventDefault();
-            document.body.style.opacity="0";
-            setTimeout(()=>{
-                window.location.href = target;
-            },400);
-        }
-    });
-});
-</script>
 
 </body>
 </html>
