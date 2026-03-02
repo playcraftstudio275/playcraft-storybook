@@ -9,260 +9,229 @@
 <head>
 
     <!-- ============================= -->
-    <!-- META BASIC -->
+    <!-- META -->
     <!-- ============================= -->
     <meta charset="UTF-8">
     <title>Playcraft Storybook</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- ============================= -->
-    <!-- GOOGLE FONT (Soft & Friendly) -->
+    <!-- GOOGLE FONT -->
     <!-- ============================= -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- ============================= -->
-    <!-- MAIN STYLE START -->
+    <!-- MAIN STYLE -->
     <!-- ============================= -->
     <style>
 
         /* ============================= */
         /* GLOBAL RESET */
         /* ============================= */
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            color: #444;
+            background: linear-gradient(135deg,#FFEAF4,#FFF6E9,#EAF6FF);
+            overflow-x: hidden;
         }
 
         /* ============================= */
-        /* BODY BACKGROUND - PASTEL GRADIENT */
+        /* HEADER */
         /* ============================= */
-        body{
-            font-family:'Fredoka', sans-serif;
-            min-height:100vh;
-            text-align:center;
-            color:#444;
-            background:linear-gradient(135deg,#FFEAF4,#FFF6E9,#EAF6FF);
-            overflow-x:hidden;
-            display:flex;
-            flex-direction:column;
+        header {
+            padding: 60px 20px 30px;
+            animation: fadeIn 1.2s ease;
         }
 
-        /* ============================= */
-        /* HERO / HEADER SECTION */
-        /* ============================= */
-        header{
-            padding:60px 20px 30px;
-            animation:fadeIn 1.2s ease;
-        }
-
-        /* ============================= */
-        /* MAIN TITLE WITH SOFT GLOW */
-        /* ============================= */
-        header h1{
-            font-size:clamp(32px,6vw,52px);
-            color:#FF6FA5;
+        header h1 {
+            font-size: clamp(32px,6vw,52px);
+            color: #FF6FA5;
             text-shadow:
                 0 0 8px rgba(255,111,165,0.4),
                 0 0 16px rgba(255,200,220,0.5);
         }
 
-        /* ============================= */
-        /* TAGLINE */
-        /* ============================= */
-        .tagline{
-            margin-top:12px;
-            font-size:clamp(16px,2.5vw,22px);
-            color:#6A7FDB;
+        .tagline {
+            margin-top: 12px;
+            font-size: clamp(16px,2.5vw,22px);
+            color: #6A7FDB;
         }
 
-        /* ============================= */
-        /* DESCRIPTION TEXT */
-        /* ============================= */
-        header p{
-            margin-top:15px;
-            font-size:clamp(14px,2vw,18px);
-            max-width:650px;
-            margin-left:auto;
-            margin-right:auto;
-            line-height:1.6;
+        header p {
+            margin: 15px auto 0;
+            max-width: 650px;
+            font-size: clamp(14px,2vw,18px);
+            line-height: 1.6;
         }
 
         /* ============================= */
         /* SECTION TITLE */
         /* ============================= */
-        .section-title{
-            margin-top:60px;
-            font-size:clamp(22px,4vw,30px);
-            color:#FF9E57;
-            animation:fadeIn 1.4s ease;
+        .section-title {
+            margin-top: 60px;
+            font-size: clamp(22px,4vw,30px);
+            color: #FF9E57;
+            animation: fadeIn 1.4s ease;
         }
 
         /* ============================= */
-        /* SERIAL CONTAINER */
+        /* SERIAL SECTION */
         /* ============================= */
-        .serial-container{
-            display:flex;
-            justify-content:center;
-            flex-wrap:wrap;
-            gap:25px;
-            padding:40px 20px;
-            animation:fadeIn 1.6s ease;
+        .serial-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding: 40px 20px;
+            animation: fadeIn 1.6s ease;
         }
 
-        /* ============================= */
-        /* SERIAL CARD */
-        /* ============================= */
-        .serial-card{
-            background:#ffffff;
-            width:240px;
-            padding:25px;
-            border-radius:25px;
+        .serial-card {
+            width: 240px;
+            padding: 25px;
+            border-radius: 25px;
+            background: #fff;
             box-shadow:
                 0 8px 20px rgba(255,150,200,0.15),
                 0 4px 10px rgba(150,200,255,0.15);
-            transition:0.4s;
-            cursor:pointer;
+            transition: 0.4s ease;
         }
 
-        @media (hover:hover){
-            .serial-card:hover{
-                transform:translateY(-10px) scale(1.03);
+        @media (hover:hover) {
+            .serial-card:hover {
+                transform: translateY(-10px) scale(1.03);
             }
         }
 
-        .serial-card h3{
-            margin-bottom:8px;
-            color:#FF6FA5;
+        .serial-card h3 {
+            margin-bottom: 8px;
+            color: #FF6FA5;
         }
 
-        .serial-card p{
-            font-size:14px;
-            margin-bottom:12px;
+        .serial-card p {
+            font-size: 14px;
+            margin-bottom: 12px;
         }
 
         /* ============================= */
         /* BUTTON */
         /* ============================= */
-        .btn{
-            display:inline-block;
-            padding:10px 18px;
-            background:#7BA7FF;
-            color:white;
-            border-radius:20px;
-            text-decoration:none;
-            font-size:14px;
-            transition:0.3s;
+        .btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background: #7BA7FF;
+            color: #fff;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
         }
 
-        .btn:hover{
-            background:#5C8DF6;
-        }
-
-        /* ============================= */
-        /* VALUE SECTION STYLE */
-        /* ============================= */
-        .value-section{
-            padding:50px 20px 30px;
-            animation:fadeIn 1.8s ease;
-        }
-
-        .value-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-            gap:20px;
-            max-width:900px;
-            margin:40px auto 0;
-            padding:0 20px;
+        .btn:hover {
+            background: #5C8DF6;
         }
 
         /* ============================= */
-/* VALUE CARD - PASTEL GRADIENT + SOFT GLOW */
-/* Tetap ringan • No heavy effect */
-/* ============================= */
-.value-card{
-    padding:25px;
-    border-radius:25px;
-    transition:0.35s ease;
-    position:relative;
-}
+        /* COMING SOON */
+        /* ============================= */
+        .serial-card.coming-soon {
+            opacity: 0.75;
+            background: linear-gradient(145deg,#F5F5F5,#ECECEC);
+        }
 
-/* ============================= */
-/* GRADIENT SUPER HALUS */
-/* ============================= */
-.value-card:nth-child(1){
-    background:linear-gradient(145deg,#FFF4F8,#FFEAF4);
-}
-.value-card:nth-child(2){
-    background:linear-gradient(145deg,#F2F7FF,#EAF2FF);
-}
-.value-card:nth-child(3){
-    background:linear-gradient(145deg,#FFF8EC,#FFF1E0);
-}
-.value-card:nth-child(4){
-    background:linear-gradient(145deg,#F4FFF7,#E9FFF1);
-}
-.value-card:nth-child(5){
-    background:linear-gradient(145deg,#F8F3FF,#EFE7FF);
-}
-.value-card:nth-child(6){
-    background:linear-gradient(145deg,#FFFBEF,#FFF6D8);
-}
+        .serial-card.coming-soon h3 {
+            color: #999;
+        }
 
-/* ============================= */
-/* DEFAULT SOFT SHADOW */
-/* ============================= */
-.value-card{
-    box-shadow:
-        0 6px 18px rgba(0,0,0,0.06);
-}
+        .serial-card.coming-soon p {
+            font-style: italic;
+            color: #777;
+        }
 
-/* ============================= */
-/* HOVER GLOW (Desktop Only) */
-/* GPU friendly - no blur heavy */
-/* ============================= */
-@media (hover:hover){
-    .value-card:hover{
-        transform:translateY(-6px);
-    }
+        .serial-card.coming-soon .btn {
+            pointer-events: none;
+            background: #bbb;
+        }
 
-    .value-card:nth-child(1):hover{
-        box-shadow:0 10px 25px rgba(255,150,200,0.25);
-    }
-    .value-card:nth-child(2):hover{
-        box-shadow:0 10px 25px rgba(150,190,255,0.25);
-    }
-    .value-card:nth-child(3):hover{
-        box-shadow:0 10px 25px rgba(255,190,140,0.25);
-    }
-    .value-card:nth-child(4):hover{
-        box-shadow:0 10px 25px rgba(160,230,190,0.25);
-    }
-    .value-card:nth-child(5):hover{
-        box-shadow:0 10px 25px rgba(190,160,255,0.25);
-    }
-    .value-card:nth-child(6):hover{
-        box-shadow:0 10px 25px rgba(255,220,120,0.25);
-    }
-}
+        /* ============================= */
+        /* VALUE SECTION */
+        /* ============================= */
+        .value-section {
+            padding: 50px 20px 30px;
+            animation: fadeIn 1.8s ease;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 40px auto 0;
+            padding: 0 20px;
+        }
+
+        .value-card {
+            position: relative;
+            padding: 25px;
+            border-radius: 25px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            transition: 0.35s ease;
+        }
+
+        .value-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 25px;
+            background: linear-gradient(
+                180deg,
+                rgba(255,255,255,0.55),
+                rgba(255,255,255,0)
+            );
+            pointer-events: none;
+        }
+
+        /* Gradient tiap card */
+        .value-card:nth-child(1){ background:linear-gradient(145deg,#FFF4F8,#FFEAF4); }
+        .value-card:nth-child(2){ background:linear-gradient(145deg,#F2F7FF,#EAF2FF); }
+        .value-card:nth-child(3){ background:linear-gradient(145deg,#FFF8EC,#FFF1E0); }
+        .value-card:nth-child(4){ background:linear-gradient(145deg,#F4FFF7,#E9FFF1); }
+        .value-card:nth-child(5){ background:linear-gradient(145deg,#F8F3FF,#EFE7FF); }
+        .value-card:nth-child(6){ background:linear-gradient(145deg,#FFFBEF,#FFF6D8); }
+
+        @media (hover:hover) {
+            .value-card:hover {
+                transform: translateY(-6px);
+            }
+        }
 
         /* ============================= */
         /* FOOTER */
         /* ============================= */
-        footer{
-            margin-top:auto;
-            padding:25px;
-            font-size:13px;
-            background:rgba(255,255,255,0.6);
-            backdrop-filter:blur(5px);
+        footer {
+            margin-top: auto;
+            padding: 25px;
+            font-size: 13px;
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(5px);
         }
 
         /* ============================= */
-        /* FADE IN */
+        /* FADE ANIMATION */
         /* ============================= */
-        @keyframes fadeIn{
-            from{opacity:0; transform:translateY(20px);}
-            to{opacity:1; transform:translateY(0);}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
     </style>
@@ -270,9 +239,6 @@
 
 <body>
 
-<!-- ============================= -->
-<!-- HEADER -->
-<!-- ============================= -->
 <header>
     <h1>Playcraft Storybook</h1>
     <div class="tagline">Creative Play Stories for Children & Families</div>
@@ -283,39 +249,54 @@
     </p>
 </header>
 
-<!-- ============================= -->
-<!-- STORY LIST -->
-<!-- ============================= -->
 <h2 class="section-title">📚 Explore Our Stories</h2>
 
 <div class="serial-container">
+
     <div class="serial-card">
         <h3>Serial 1</h3>
         <p>Petualangan seru penuh imajinasi dan pesan kebaikan.</p>
         <a href="serial-1/index.html" class="btn">Baca Cerita</a>
     </div>
 
-    <div class="serial-card">
+    <div class="serial-card coming-soon">
         <h3>Serial 2</h3>
         <p>Coming Soon ✨</p>
         <a href="#" class="btn">Soon</a>
     </div>
 
-    <div class="serial-card">
+    <div class="serial-card coming-soon">
         <h3>Serial 3</h3>
         <p>Coming Soon ✨</p>
         <a href="#" class="btn">Soon</a>
     </div>
+
+    <div class="serial-card coming-soon">
+        <h3>Serial 4</h3>
+        <p>Coming Soon ✨</p>
+        <a href="#" class="btn">Soon</a>
+    </div>
+
+    <div class="serial-card coming-soon">
+        <h3>Serial 5</h3>
+        <p>Coming Soon ✨</p>
+        <a href="#" class="btn">Soon</a>
+    </div>
+
+    <div class="serial-card coming-soon">
+        <h3>Serial 6</h3>
+        <p>Coming Soon ✨</p>
+        <a href="#" class="btn">Soon</a>
+    </div>
+
 </div>
 
-<!-- ============================= -->
-<!-- VALUE SECTION (TAMBAHAN) -->
-<!-- ============================= -->
 <section class="value-section">
 
     <h2 class="section-title">✨ Kenapa Storybook Ini Spesial?</h2>
 
     <div class="value-grid">
+
         <div class="value-card">
             <h4>👶 Ramah Anak</h4>
             <p>Desain lembut dan cerita sederhana untuk usia 3–6 tahun.</p>
@@ -338,20 +319,18 @@
 
         <div class="value-card">
             <h4>📖 Cerita Bertahap</h4>
-            <p>Setiap serial memiliki episode berurutan yang membantu anak belajar memahami proses dan perkembangan cerita.</p>
+            <p>Setiap serial memiliki episode berurutan untuk membantu anak memahami perkembangan cerita.</p>
         </div>
 
         <div class="value-card">
             <h4>🌈 Visual Lembut</h4>
-            <p>Warna pastel dan ilustrasi yang menenangkan membantu anak merasa nyaman saat membaca.</p>
+            <p>Warna pastel dan ilustrasi menenangkan membantu anak merasa nyaman saat membaca.</p>
         </div>
-    </div>     
-    
+
+    </div>
+
 </section>
 
-<!-- ============================= -->
-<!-- FOOTER -->
-<!-- ============================= -->
 <footer>
     © 2026 Playcraft Studio • Made with ❤️ for Children & Families
 </footer>
