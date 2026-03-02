@@ -177,40 +177,74 @@
         }
 
         /* ============================= */
-        /* VALUE CARD - SOFT PASTEL VARIATION */
-        /* ============================= */
-        .value-card{
-            padding:25px;
-            border-radius:25px;
-            box-shadow:
-                0 6px 18px rgba(255,150,200,0.12),
-                0 4px 10px rgba(150,200,255,0.12);
-            transition:0.3s;
-        }
+/* VALUE CARD - PASTEL GRADIENT + SOFT GLOW */
+/* Tetap ringan • No heavy effect */
+/* ============================= */
+.value-card{
+    padding:25px;
+    border-radius:25px;
+    transition:0.35s ease;
+    position:relative;
+}
 
-        /* Warna pastel berbeda tiap card */
-        .value-card:nth-child(1){ background:#FFF4F8; }  /* soft pink */
-        .value-card:nth-child(2){ background:#F2F7FF; }  /* baby blue */
-        .value-card:nth-child(3){ background:#FFF8EC; }  /* peach */
-        .value-card:nth-child(4){ background:#F4FFF7; }  /* mint */
-        .value-card:nth-child(5){ background:#F8F3FF; }  /* lavender */
-        .value-card:nth-child(6){ background:#FFFBEF; }  /* soft yellow */
+/* ============================= */
+/* GRADIENT SUPER HALUS */
+/* ============================= */
+.value-card:nth-child(1){
+    background:linear-gradient(145deg,#FFF4F8,#FFEAF4);
+}
+.value-card:nth-child(2){
+    background:linear-gradient(145deg,#F2F7FF,#EAF2FF);
+}
+.value-card:nth-child(3){
+    background:linear-gradient(145deg,#FFF8EC,#FFF1E0);
+}
+.value-card:nth-child(4){
+    background:linear-gradient(145deg,#F4FFF7,#E9FFF1);
+}
+.value-card:nth-child(5){
+    background:linear-gradient(145deg,#F8F3FF,#EFE7FF);
+}
+.value-card:nth-child(6){
+    background:linear-gradient(145deg,#FFFBEF,#FFF6D8);
+}
 
-        @media (hover:hover){
-            .value-card:hover{
-                transform:translateY(-6px);
-            }
-        }
+/* ============================= */
+/* DEFAULT SOFT SHADOW */
+/* ============================= */
+.value-card{
+    box-shadow:
+        0 6px 18px rgba(0,0,0,0.06);
+}
 
-        .value-card h4{
-            margin-bottom:10px;
-            color:#FF6FA5;
-        }
+/* ============================= */
+/* HOVER GLOW (Desktop Only) */
+/* GPU friendly - no blur heavy */
+/* ============================= */
+@media (hover:hover){
+    .value-card:hover{
+        transform:translateY(-6px);
+    }
 
-        .value-card p{
-            font-size:14px;
-            line-height:1.5;
-        }
+    .value-card:nth-child(1):hover{
+        box-shadow:0 10px 25px rgba(255,150,200,0.25);
+    }
+    .value-card:nth-child(2):hover{
+        box-shadow:0 10px 25px rgba(150,190,255,0.25);
+    }
+    .value-card:nth-child(3):hover{
+        box-shadow:0 10px 25px rgba(255,190,140,0.25);
+    }
+    .value-card:nth-child(4):hover{
+        box-shadow:0 10px 25px rgba(160,230,190,0.25);
+    }
+    .value-card:nth-child(5):hover{
+        box-shadow:0 10px 25px rgba(190,160,255,0.25);
+    }
+    .value-card:nth-child(6):hover{
+        box-shadow:0 10px 25px rgba(255,220,120,0.25);
+    }
+}
 
         /* ============================= */
         /* FOOTER */
