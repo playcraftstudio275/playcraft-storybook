@@ -1,162 +1,215 @@
 <!-- ============================= -->
 <!-- PLAYCRAFT STORYBOOK ROOT PAGE -->
-<!-- Creative Play Stories for Children & Families -->
+<!-- Sky Theme • Responsive • Brand Consistent -->
 <!-- ============================= -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Playcraft Storybook</title>
+<meta charset="UTF-8">
+<title>Playcraft Storybook | Creative Play Stories</title>
 
-    <!-- ============================= -->
-    <!-- Responsive Meta Tag -->
-    <!-- ============================= -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ============================= -->
+<!-- Responsive Meta Tag -->
+<!-- ============================= -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ============================= -->
-    <!-- Google Font (Playful & Soft) -->
-    <!-- ============================= -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+<!-- ============================= -->
+<!-- Google Fonts (Consistent with Serial 1) -->
+<!-- ============================= -->
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-    <!-- ============================= -->
-    <!-- Basic Styling -->
-    <!-- ============================= -->
-    <style>
+<style>
 
-        /* Reset basic margin */
-        body {
-            margin: 0;
-            font-family: 'Fredoka', sans-serif;
-            background: linear-gradient(to bottom, #FFF6E9, #FFE4F2);
-            text-align: center;
-            color: #444;
-        }
+/* ================= GLOBAL RESET ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* Header Section */
-        header {
-            padding: 50px 20px 20px;
-        }
+/* ================= BODY ================= */
+body{
+    font-family:'Poppins', sans-serif;
+    background:linear-gradient(135deg,#a1c4fd,#c2e9fb);
+    color:#1f2d3d;
+    overflow-x:hidden;
+}
 
-        header h1 {
-            font-size: 42px;
-            color: #FF7BA9;
-            margin-bottom: 10px;
-        }
+/* ================= MAIN CONTAINER ================= */
+.container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:60px 20px 80px;
+}
 
-        header p {
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+/* ================= HERO ================= */
+header{
+    text-align:center;
+    margin-bottom:70px;
+}
 
-        /* Tagline */
-        .tagline {
-            margin-top: 10px;
-            font-size: 20px;
-            color: #5C6BC0;
-        }
+header h1{
+    font-family:'Baloo 2', cursive;
+    font-size:clamp(2.5rem,6vw,4rem);
+    color:#1b3a57;
+    margin-bottom:15px;
+}
 
-        /* Section Title */
-        .section-title {
-            margin-top: 50px;
-            font-size: 28px;
-            color: #FF8C42;
-        }
+.tagline{
+    font-size:clamp(1rem,2vw,1.3rem);
+    font-weight:500;
+    margin-bottom:20px;
+}
 
-        /* Serial Cards Container */
-        .serial-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 30px;
-        }
+header p{
+    max-width:700px;
+    margin:0 auto;
+    line-height:1.7;
+    opacity:0.85;
+    font-size:clamp(0.9rem,2vw,1rem);
+}
 
-        /* Individual Card */
-        .serial-card {
-            background: white;
-            width: 220px;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.08);
-            transition: 0.3s;
-            cursor: pointer;
-        }
+/* ================= SECTION TITLE ================= */
+.section-title{
+    text-align:center;
+    margin:70px 0 40px;
+    font-family:'Baloo 2', cursive;
+    font-size:clamp(1.8rem,4vw,2.5rem);
+    color:#1b3a57;
+}
 
-        .serial-card:hover {
-            transform: translateY(-8px);
-        }
+/* ================= SERIAL GRID ================= */
+.serial-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:25px;
+    max-width:1000px;
+    margin:0 auto;
+}
 
-        .serial-card h3 {
-            margin: 10px 0 5px;
-            color: #FF7BA9;
-        }
+/* ================= SERIAL CARD ================= */
+.serial-card{
+    background:white;
+    padding:30px 25px;
+    border-radius:24px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.08);
+    transition:0.3s ease;
+    text-align:center;
+}
 
-        .serial-card p {
-            font-size: 14px;
-        }
+.serial-card:hover{
+    transform:translateY(-6px);
+}
 
-        /* Button */
-        .btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 15px;
-            background: #5C6BC0;
-            color: white;
-            border-radius: 15px;
-            text-decoration: none;
-            font-size: 14px;
-        }
+.serial-card h3{
+    font-family:'Baloo 2', cursive;
+    color:#1b3a57;
+    margin-bottom:10px;
+    font-size:1.3rem;
+}
 
-        /* Footer */
-        footer {
-            margin-top: 60px;
-            padding: 20px;
-            font-size: 13px;
-            background: #ffffffaa;
-        }
+.serial-card p{
+    font-size:0.9rem;
+    opacity:0.8;
+    margin-bottom:15px;
+    line-height:1.6;
+}
 
-    </style>
+/* ================= BUTTON ================= */
+.btn{
+    display:inline-block;
+    padding:10px 18px;
+    background:#ffb347;
+    color:white;
+    text-decoration:none;
+    border-radius:20px;
+    font-size:0.9rem;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#ff9800;
+}
+
+/* ================= VALUE SECTION ================= */
+.value-section{
+    margin-top:90px;
+}
+
+.value-grid{
+    display:grid;
+    gap:25px;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+}
+
+.value-card{
+    background:rgba(255,255,255,0.6);
+    backdrop-filter:blur(6px);
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.value-card h4{
+    font-family:'Baloo 2', cursive;
+    margin-bottom:8px;
+}
+
+/* ================= FOOTER ================= */
+footer{
+    text-align:center;
+    margin-top:80px;
+    padding:30px 20px;
+    font-size:0.85rem;
+    opacity:0.7;
+}
+
+/* ================= EXTRA LARGE SCREEN (Smart TV) ================= */
+@media (min-width:1600px){
+    .container{
+        max-width:1400px;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
-<!-- ============================= -->
-<!-- HEADER / HERO SECTION -->
-<!-- ============================= -->
+<div class="container">
+
+<!-- ================= HERO ================= -->
 <header>
     <h1>Playcraft Storybook</h1>
     <div class="tagline">Creative Play Stories for Children & Families</div>
     <p>
-        Playcraft Storybook adalah ruang cerita digital untuk anak dan keluarga. 
-        Setiap kisah dirancang untuk membangun imajinasi, kedekatan, 
+        Playcraft Storybook adalah ruang cerita digital untuk anak dan keluarga.
+        Setiap kisah dirancang untuk membangun imajinasi, kedekatan,
         dan momen hangat bersama.
     </p>
 </header>
 
-<!-- ============================= -->
-<!-- SERIAL LIST SECTION -->
-<!-- ============================= -->
+<!-- ================= SERIAL SECTION ================= -->
 <h2 class="section-title">📚 Explore Our Stories</h2>
 
 <div class="serial-container">
 
-    <!-- SERIAL 1 CARD -->
     <div class="serial-card">
-        <h3>Serial 1</h3>
-        <p>Petualangan seru penuh imajinasi dan pesan kebaikan.</p>
-        <a href="serial-1/index.html" class="btn">Baca Cerita</a>
+        <h3>Pipi dan Kisah-Kisah yang Membesarkan Hati</h3>
+        <p>
+            Petualangan tentang biji ajaib, pelangi, dan proses tumbuh
+            yang indah untuk anak dan orang tua.
+        </p>
+        <a href="serial-1/" class="btn">Buka Serial</a>
     </div>
 
-    <!-- SERIAL 2 (Coming Soon) -->
     <div class="serial-card">
         <h3>Serial 2</h3>
         <p>Coming Soon ✨</p>
         <a href="#" class="btn">Soon</a>
     </div>
 
-    <!-- SERIAL 3 (Coming Soon) -->
     <div class="serial-card">
         <h3>Serial 3</h3>
         <p>Coming Soon ✨</p>
@@ -165,11 +218,41 @@
 
 </div>
 
-<!-- ============================= -->
-<!-- FOOTER -->
-<!-- ============================= -->
+<!-- ================= VALUE SECTION ================= -->
+<section class="value-section">
+
+    <h2 class="section-title">✨ Kenapa Storybook Ini Spesial?</h2>
+
+    <div class="value-grid">
+
+        <div class="value-card">
+            <h4>👶 Ramah Anak</h4>
+            <p>Desain lembut dan cerita sederhana untuk usia 3–6 tahun.</p>
+        </div>
+
+        <div class="value-card">
+            <h4>🎧 Audio Hangat</h4>
+            <p>Bisa dibacakan atau didengarkan bersama keluarga.</p>
+        </div>
+
+        <div class="value-card">
+            <h4>🎨 Aktivitas Kreatif</h4>
+            <p>Ada bonus origami, drawing, dan mini craft.</p>
+        </div>
+
+        <div class="value-card">
+            <h4>👨‍👩‍👧 Momen Keluarga</h4>
+            <p>Membangun kedekatan lewat cerita dan imajinasi.</p>
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+
 <footer>
-    © 2026 Playcraft Studio • Made with ❤️ for Children & Families
+    © 2026 Playcraft Studio • All Rights Reserved
 </footer>
 
 </body>
